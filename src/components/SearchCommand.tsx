@@ -12,9 +12,8 @@ import {
 
 const pages = [
   { name: "Home", href: "/" },
-  { name: "Notes", href: "/notes" },
-  { name: "Projects", href: "/projects" },
-  { name: "Uses", href: "/uses" },
+  { name: "Posts", href: "/posts" },
+  { name: "Projects", href: "/projects" }
 ];
 
 export function SearchCommand() {

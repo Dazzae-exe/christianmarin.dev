@@ -1,6 +1,7 @@
 import { Avatar } from "@/components/Avatar";
 import { WorkItem } from "@/components/WorkItem";
 import { ProjectCard } from "@/components/ProjectCard";
+import { Button } from "@/components/ui/button";
 
 const workExperience = [
   {
@@ -75,6 +76,10 @@ const Index = () => {
                 As a dedicated software engineer, I specialize in crafting high-quality products where sleek design meets rock-solid engineering. I thrive at the intersection of aesthetics and functionality, delivering visually captivating interfaces backed by scalable, performant code.
               </p>
             </div>
+
+            <Button variant={'outline'}>
+              Resume
+            </Button>
         </section>
 
         {/* Work Section */}

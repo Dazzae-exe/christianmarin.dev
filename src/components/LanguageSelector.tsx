@@ -12,7 +12,7 @@ export function LanguageSelector() {
     const [language, setLanguage] = React.useState<'en' | 'es'>('en');
   return (
     <Select value={language} onValueChange={(value: 'en' | 'es') => setLanguage(value)}>
-      <SelectTrigger className="w-[120px] h-8 text-xs font-mono border-border/50 bg-background">
+      <SelectTrigger className="w-[150px] h-8 text-xs font-mono border-border/50 bg-background">
         <Globe className="h-3.5 w-3.5 mr-1.5" />
         <SelectValue />
       </SelectTrigger>
@@ -21,7 +21,7 @@ export function LanguageSelector() {
             English
         </SelectItem>
         <SelectItem value="es" className="text-xs font-mono">
-            Spanish
+            i18n soon...
         </SelectItem>
       </SelectContent>
     </Select>
