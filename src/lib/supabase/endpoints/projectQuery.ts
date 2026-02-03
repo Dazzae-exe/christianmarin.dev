@@ -11,7 +11,6 @@ const getProjects = async (): Promise<Project[]> => {
     throw new Error(error.message);
   }
 
-  console.log(data);
   return data || [];
 };
 

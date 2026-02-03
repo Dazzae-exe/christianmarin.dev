@@ -10,7 +10,14 @@ import { ThemeProvider } from './components/ThemeProvider'
 
 // Create a new router instance
 const router = createRouter({ routeTree })
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false
+    }
+  }
+});
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {

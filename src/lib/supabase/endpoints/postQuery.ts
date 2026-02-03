@@ -11,7 +11,6 @@ const getPosts = async (): Promise<Post[]> => {
     throw new Error(error.message);
   }
 
-  console.log(data);
   return data || [];
 };
 
