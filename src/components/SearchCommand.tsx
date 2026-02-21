@@ -9,6 +9,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import { Link } from "@tanstack/react-router";
 
 const pages = [
   { name: "Home", href: "/" },
@@ -53,12 +54,11 @@ export function SearchCommand() {
             {pages.map((page) => (
               <CommandItem
                 key={page.href}
-                onSelect={() => {
-                  setOpen(false);
-                  window.location.href = page.href;
-                }}
+                asChild
               >
-                {page.name}
+                <Link to={page.href} onClick={() => setOpen(false)}>
+                  {page.name}
+                </Link>
               </CommandItem>
             ))}
           </CommandGroup>
