@@ -1,6 +1,6 @@
 import { Avatar } from "@/components/Avatar";
 import { WorkItem } from "@/components/WorkItem";
-import { ProjectCard } from "@/components/ProjectCard";
+import { ContentCard } from "@/components/ContentCard";
 import { Button } from "@/components/ui/button";
 import AvatarDazz from "@/assets/avatar-dazz.webp";
 
@@ -99,7 +99,7 @@ const Index = () => {
           <div className="h-px border border-dashed" />
           <div className="max-w-2xl my-6 space-y-4 md:px-0 px-6 mx-auto">
             {projects.map((project) => (
-              <ProjectCard
+              <ContentCard
                 key={project.title}
                 title={project.title}
                 description={project.description}

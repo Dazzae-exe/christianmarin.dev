@@ -1,11 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { getPosts } from '@/lib/supabase/endpoints/postQuery';
-import { getProjects } from '@/lib/supabase/endpoints/projectQuery';
+import { getPost, getPosts } from '@/lib/supabase/endpoints/posts/postQuery';
+import { getProjects } from '@/lib/supabase/endpoints/projects/projectQuery';
 
 const usePosts = () => {
     return useQuery({
         queryKey: ['posts'],
         queryFn: getPosts,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+    });
+}
+
+const usePost = (id: string) => {
+    return useQuery({
+        queryKey: ['post', id],
+        queryFn: () => getPost(id),
         staleTime: 5 * 60 * 1000, // 5 minutes
     });
 }
@@ -18,4 +26,4 @@ const useProjects = () => {
     });
 }
 
-export { usePosts, useProjects };
+export { usePosts, usePost, useProjects };

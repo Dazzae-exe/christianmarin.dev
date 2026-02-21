@@ -1,11 +1,11 @@
-import { ProjectCard } from './ProjectCard';
+import { ContentCard } from './ContentCard';
 import { usePosts } from '@/hooks/useQueryHooks';
 
 export const PostsList = () => {
     const { data: posts, error, isLoading } = usePosts();
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className='max-w-2xl mx-auto mt-16'>Loading...</div>;
     }
 
     if (error) {
@@ -22,7 +22,7 @@ export const PostsList = () => {
             <div className='border-b border-dashed' />
             <div className="max-w-2xl my-6 md:px-0 px-6 mx-auto space-y-6">
                 {posts.map((post) => (
-                    <ProjectCard key={post.id} title={post.title} href={`/posts`} description={post.description || ''} tags={[]} />
+                    <ContentCard key={post.id} title={post.title} href={`/posts/${post.id}`} description={post.description || ''} tags={[]} />
                 ))}
             </div>
         </div>
