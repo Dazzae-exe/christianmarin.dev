@@ -1,73 +1,154 @@
-# React + TypeScript + Vite
+# Christian Marín — Portfolio (Blog + Project Showcase)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern personal portfolio built with **React + TypeScript** to showcase professional work, projects, and technical writing in one place.
 
-Currently, two official plugins are available:
+This app combines:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- A clean personal landing page
+- A **blog section** powered by Supabase content
+- A **project showcase** with dedicated listing routes
+- Fast client-side navigation with TanStack Router
+- Cached data fetching with TanStack Query
+- A polished UI using Tailwind CSS + Radix/shadcn-style primitives
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What I Built
 
-## Expanding the ESLint configuration
+### 1) Personal Home Experience
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Intro/profile section with avatar and summary
+- Work experience timeline with outbound links
+- Featured project highlights
+- Quick entry point to Posts and Projects sections
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 2) Blog System
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- `/posts` route lists blog entries from Supabase
+- `/posts/$postId` route renders an individual article view
+- Sorted by newest first (`created_at desc`)
+- Loading, empty-state, and error handling included
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3) Project Showcase
+
+- `/projects` route lists projects from Supabase
+- Card-based content previews
+- Dedicated project detail route scaffolded at `/projects/$projectId`
+
+### 4) Navigation + UX
+
+- Sticky top navigation for Home / Posts / Projects
+- Command menu search (`⌘K` / `Ctrl+K`) for quick page jump
+- Footer with social links, contact dialog, language selector, and theme selector
+- Responsive layout with a consistent visual style
+
+---
+
+## Tech Stack
+
+### Core
+
+- **React 19**
+- **TypeScript 5**
+- **Vite 7**
+
+### Routing & Data
+
+- **TanStack Router** (file-based routing)
+- **TanStack Query** (server-state caching and query lifecycle)
+- **Supabase JS** (content backend for posts/projects)
+
+### UI & Styling
+
+- **Tailwind CSS 4**
+- **Radix UI primitives**
+- **shadcn/ui-style component architecture**
+- **Lucide React** icons
+- **next-themes** for dark/light theme behavior
+
+### Forms & Validation
+
+- **react-hook-form**
+- **zod**
+- **@hookform/resolvers**
+
+### Tooling
+
+- **ESLint 9**
+- **TypeScript ESLint**
+
+---
+
+## Project Structure
+
+```bash
+src/
+	components/         # Reusable UI and feature components
+	hooks/              # Query hooks (posts/projects)
+	lib/
+		supabase/         # Supabase client + endpoint query modules
+		types/            # Shared domain types
+	pages/              # Page-level components
+	routes/             # TanStack Router route files
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Local Development
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1) Install dependencies
+
+```bash
+pnpm install
 ```
+
+### 2) Configure environment variables
+
+Create a `.env` file in the project root:
+
+```bash
+VITE_SUPABASE_URL=your_supabase_project_url
+VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=your_supabase_anon_or_publishable_key
+```
+
+### 3) Run the app
+
+```bash
+pnpm dev
+```
+
+The app runs in development mode with Vite.
+
+---
+
+## Available Scripts
+
+- `pnpm dev` — start local development server
+- `pnpm build` — type-check and build production assets
+- `pnpm preview` — preview production build locally
+- `pnpm lint` — run lint checks
+
+---
+
+## Deployment
+
+This project includes `vercel.json` and is ready to deploy on **Vercel**.
+
+For production, ensure the same `VITE_SUPABASE_*` environment variables are set in your hosting platform.
+
+---
+
+## Notes
+
+- Data for posts and projects is fetched from Supabase tables.
+- Query caching is configured with a 5-minute stale window in custom hooks.
+- The codebase is organized to scale content sections cleanly (posts, projects, future additions).
+
+---
+
+## Author
+
+**Christian Marín**
+
+- GitHub: [@dazzae-exe](https://github.com/dazzae-exe)
+- LinkedIn: [christianmarindaza](https://www.linkedin.com/in/christianmarindaza)
