@@ -5,8 +5,8 @@ export interface Project {
     description?: string;
     slug: string;
     project_content?: string;
-    client: string;
-    status: 'ongoing' | 'completed' | 'paused';
+    client?: string;
+    status: 'active' | 'completed' | 'paused';
     tags?: string[];
     role: string;
 }

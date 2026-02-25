@@ -14,4 +14,18 @@ const getProjects = async (): Promise<Project[]> => {
   return data || [];
 };
 
-export { getProjects };
+const getProject = async (slug: string): Promise<Project | null> => {
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data || null;
+};
+
+export { getProjects, getProject };
