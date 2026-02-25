@@ -19,4 +19,4 @@ export const PostArticle = ({ post }: { post: Post }) => {
             </article>
         </div>
     );
-}
+};
