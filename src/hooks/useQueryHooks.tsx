@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { getPost, getPosts } from '@/lib/supabase/endpoints/posts/postQuery';
-import { getProjects } from '@/lib/supabase/endpoints/projects/projectQuery';
+import { getProject, getProjects } from '@/lib/supabase/endpoints/projects/projectQuery';
 
 const usePosts = () => {
     return useQuery({
@@ -26,4 +26,12 @@ const useProjects = () => {
     });
 }
 
-export { usePosts, usePost, useProjects };
+const useProject = (id: string) => {
+    return useQuery({
+        queryKey: ['project', id],
+        queryFn: () => getProject(id),
+        staleTime: 5 * 60 * 1000, // 5 minutes
+    });
+}
+
+export { usePosts, usePost, useProjects, useProject };
