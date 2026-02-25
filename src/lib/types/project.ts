@@ -1,6 +1,6 @@
 export interface Project {
     id: number;
-    created_at?: string;
+    created_at?: string | Date;
     title: string;
     description?: string;
     slug: string;
