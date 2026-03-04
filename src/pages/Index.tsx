@@ -1,8 +1,8 @@
 import { Avatar } from "@/components/Avatar";
 import { WorkItem } from "@/components/WorkItem";
 import { ContentCard } from "@/components/ContentCard";
-import { Button } from "@/components/ui/button";
 import AvatarDazz from "@/assets/avatar-dazz.webp";
+import { DialogCV } from "@/components/DialogCV.tsx";
 
 const workExperience = [
   {
@@ -71,9 +71,7 @@ const Index = () => {
               </p>
             </div>
 
-            <Button variant={'outline'}>
-              Resume
-            </Button>
+            <DialogCV />
         </section>
 
         <section className="mt-16">
