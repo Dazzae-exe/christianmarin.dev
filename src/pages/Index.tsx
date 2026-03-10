@@ -1,8 +1,10 @@
 import { Avatar } from "@/components/Avatar";
 import { WorkItem } from "@/components/WorkItem";
 import { ContentCard } from "@/components/ContentCard";
-import { Button } from "@/components/ui/button";
 import AvatarDazz from "@/assets/avatar-dazz.webp";
+import { DialogCV } from "@/components/DialogCV.tsx";
+import { usePosts } from "@/hooks/useQueryHooks.tsx";
+import type { Post } from "@/lib/types/post.ts";
 
 const workExperience = [
   {
@@ -53,6 +55,8 @@ const projects = [
 ];
 
 const Index = () => {
+  const { data: posts } = usePosts();
+
   return (
     <div className="min-h-screen bg-background py-12">
         <section className="space-y-6 md:mx-auto mx-6 max-w-2xl">
@@ -71,9 +75,7 @@ const Index = () => {
               </p>
             </div>
 
-            <Button variant={'outline'}>
-              Resume
-            </Button>
+            <DialogCV />
         </section>
 
         <section className="mt-16">
@@ -114,7 +116,15 @@ const Index = () => {
           <h2 className="max-w-2xl font-mono text-2xl font-semibold tracking-tight md:mx-auto mx-6">Posts</h2>
           <div className="h-px border border-dashed" />
           <div className="max-w-2xl my-6 md:px-0 px-6 mx-auto">
-            <p className="text-sm text-muted-foreground">Coming soon...</p>
+            {posts?.map((post: Post) => (
+              <ContentCard
+                key={post.id}
+                title={post.title}
+                description={post.description || ""}
+                href={`/posts/${post.id}`}
+                tags={[]}
+              />
+            ))}
           </div>
         </section>
     </div>
