@@ -13,9 +13,23 @@ function RouteComponent() {
 
   if (isLoading) return <ArticleSkeleton />;
 
-  if (error) return <div className='mt-16 max-w-2xl mx-auto space-y-8'>Error loading post.</div>;
+  if (error) return (
+    <div>
+      <div className="border-t border-dashed w-full" />
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed px-6 py-6 text-muted-foreground">
+        Error loading post.
+      </div>
+    </div>
+  );
 
-  if (!post) return <div className='mt-16 max-w-2xl mx-auto space-y-8'>Post not found.</div>;
+  if (!post) return (
+    <div>
+      <div className="border-t border-dashed w-full" />
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed px-6 py-6 text-muted-foreground">
+        Post not found.
+      </div>
+    </div>
+  );
   
   return <PostArticle post={post} />;
 }
