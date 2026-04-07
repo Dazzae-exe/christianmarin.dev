@@ -7,10 +7,11 @@ export const PostsList = () => {
 
     if (isLoading) {
         return (
-            <div className='mt-16'>
-                <h2 className="max-w-2xl font-mono text-2xl font-semibold tracking-tight md:mx-auto mx-6">Posts</h2>
-                <div className='border-b border-dashed' />
-                <div className="max-w-2xl my-6 md:px-0 px-6 mx-auto space-y-6">
+            <div className="min-h-screen mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
+                <div className="border-t border-dashed w-full" />
+                <h2 className="font-mono text-2xl font-semibold tracking-tight px-6 py-4">Posts</h2>
+                <div className="border-t border-dashed w-full" />
+                <div className="px-6 py-6 space-y-6">
                     {Array.from({ length: 3 }).map((_, index) => (
                         <ContentCardSkeleton key={index} />
                     ))}
@@ -20,22 +21,38 @@ export const PostsList = () => {
     }
 
     if (error) {
-        return <div>Error loading posts: {(error as Error).message}</div>;
+        return (
+            <div className="min-h-screen mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
+                <div className="border-t border-dashed w-full" />
+                <div className="px-6 py-6 text-muted-foreground font-mono text-sm">
+                    Error loading posts: {(error as Error).message}
+                </div>
+            </div>
+        );
     }
 
     if (!posts || posts.length === 0) {
-        return <div>No posts available.</div>;
+        return (
+            <div className="min-h-screen mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
+                <div className="border-t border-dashed w-full" />
+                <div className="px-6 py-6 text-muted-foreground font-mono text-sm">
+                    No posts available.
+                </div>
+            </div>
+        );
     }
 
     return (
-        <div className='mt-16'>
-            <h2 className="max-w-2xl font-mono text-2xl font-semibold tracking-tight md:mx-auto mx-6">Posts</h2>
-            <div className='border-b border-dashed' />
-            <div className="max-w-2xl my-6 md:px-0 px-6 mx-auto space-y-6">
-                {posts.map((post) => (
-                    <ContentCard key={post.id} title={post.title} href={`/posts/${post.id}`} description={post.description || ''} tags={[]} />
-                ))}
-            </div>
+        <div className="min-h-screen mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
+            <section>
+                <h2 className="font-mono text-2xl font-semibold tracking-tight px-6 py-4">Posts</h2>
+                <div className="border-t border-dashed w-full" />
+                <div className="px-6 py-6 space-y-6">
+                    {posts.map((post) => (
+                        <ContentCard key={post.id} title={post.title} href={`/posts/${post.id}`} description={post.description || ''} tags={[]} />
+                    ))}
+                </div>
+            </section>
         </div>
     );
 }

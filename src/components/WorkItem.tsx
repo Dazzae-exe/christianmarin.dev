@@ -9,7 +9,7 @@ interface WorkItemProps {
 
 export function WorkItem({ company, role, period, href }: WorkItemProps) {
   return (
-    <div className="group">
+    <div className="group border-l border-dashed pl-4">
       <ExternalLink href={href} className="text-sm font-medium">
         {company}
       </ExternalLink>
