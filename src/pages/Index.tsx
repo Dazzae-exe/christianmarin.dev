@@ -58,30 +58,35 @@ const Index = () => {
   const { data: posts } = usePosts();
 
   return (
-    <div className="min-h-screen bg-background py-12">
-        <section className="space-y-6 md:mx-auto mx-6 max-w-2xl">
-            <Avatar
-              src={AvatarDazz}
-              alt="Profile"
-              className="h-20 w-20"
-            />
-            
-            <div className="space-y-4">
-              <h1 className="font-mono text-3xl font-semibold tracking-tight">
-                Hey, I'm Christian Marín @ <br/>Software Engineer.
-              </h1>
-              <p className="text-base leading-relaxed text-muted-foreground">
-                As a dedicated software engineer, I specialize in crafting high-quality products where sleek design meets rock-solid engineering. I thrive at the intersection of aesthetics and functionality, delivering visually captivating interfaces backed by scalable, performant code.
-              </p>
-            </div>
+    <div className="min-h-screen bg-background">
 
-            <DialogCV />
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed py-6">
+        <section className="space-y-6 px-6">
+          <Avatar
+            src={AvatarDazz}
+            alt="Profile"
+            className="h-20 w-20"
+          />
+
+          <div className="space-y-4">
+            <h1 className="font-mono text-3xl font-semibold tracking-tight">
+              Hey, I'm Christian Marín @ <br/>Software Engineer.
+            </h1>
+            <p className="text-base leading-relaxed text-muted-foreground">
+              As a dedicated software engineer, I specialize in crafting high-quality products where sleek design meets rock-solid engineering. I thrive at the intersection of aesthetics and functionality, delivering visually captivating interfaces backed by scalable, performant code.
+            </p>
+          </div>
+
+          <DialogCV />
         </section>
+      </div>
 
-        <section className="mt-16">
-          <h2 className="max-w-2xl font-mono text-2xl font-semibold tracking-tight md:mx-auto mx-6">Work</h2>
-          <div className="h-px border border-dashed" />
-          <div className="mx-auto max-w-2xl my-6 md:px-0 px-6">
+      <div className="border-t border-dashed w-full" />
+
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
+        <section className="py-6">
+          <h2 className="font-mono text-2xl font-semibold tracking-tight px-6 pb-4">Work</h2>
+          <div className="px-6 pb-6">
             <div className="space-y-4">
               {workExperience.map((work) => (
                 <WorkItem
@@ -95,11 +100,14 @@ const Index = () => {
             </div>
           </div>
         </section>
+      </div>
 
-        <section className="mt-16">
-          <h2 className="max-w-2xl font-mono text-2xl font-semibold tracking-tight md:mx-auto mx-6">Projects</h2>
-          <div className="h-px border border-dashed" />
-          <div className="max-w-2xl my-6 space-y-4 md:px-0 px-6 mx-auto">
+      <div className="border-t border-dashed w-full" />
+
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
+        <section className="py-6">
+          <h2 className="font-mono text-2xl font-semibold tracking-tight px-6 pb-4">Projects</h2>
+          <div className="px-6 pb-6 space-y-4">
             {projects.map((project) => (
               <ContentCard
                 key={project.title}
@@ -111,11 +119,14 @@ const Index = () => {
             ))}
           </div>
         </section>
+      </div>
 
-        <section className="mt-16">
-          <h2 className="max-w-2xl font-mono text-2xl font-semibold tracking-tight md:mx-auto mx-6">Posts</h2>
-          <div className="h-px border border-dashed" />
-          <div className="max-w-2xl my-6 md:px-0 px-6 mx-auto">
+      <div className="border-t border-dashed w-full" />
+
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
+        <section className="py-6">
+          <h2 className="font-mono text-2xl font-semibold tracking-tight px-6 pb-4">Posts</h2>
+          <div className="px-6 pb-6">
             {posts?.map((post: Post) => (
               <ContentCard
                 key={post.id}
@@ -127,6 +138,8 @@ const Index = () => {
             ))}
           </div>
         </section>
+      </div>
+
     </div>
   );
 };

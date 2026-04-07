@@ -13,9 +13,23 @@ function RouteComponent() {
 
   if (isLoading) return <ArticleSkeleton />;
 
-  if (error) return <div className='mt-16 max-w-2xl mx-auto space-y-8'>Error loading project.</div>;
+  if (error) return (
+    <div>
+      <div className="border-t border-dashed w-full" />
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed px-6 py-6 text-muted-foreground">
+        Error loading project.
+      </div>
+    </div>
+  );
 
-  if (!project) return <div className='mt-16 max-w-2xl mx-auto space-y-8'>Project not found.</div>;
+  if (!project) return (
+    <div>
+      <div className="border-t border-dashed w-full" />
+      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed px-6 py-6 text-muted-foreground">
+        Project not found.
+      </div>
+    </div>
+  );
 
   return <ProjectArticle project={project} />;
 }

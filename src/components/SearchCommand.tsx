@@ -36,7 +36,7 @@ export function SearchCommand() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="flex items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-sm text-muted-foreground hover:bg-accent transition-colors"
+        className="flex items-center gap-2 rounded-md border border-dashed border-border bg-transparent px-3 py-1.5 font-mono text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200"
       >
         <Search className="h-4 w-4" />
         <span className="hidden sm:inline-block">Search pages...</span>

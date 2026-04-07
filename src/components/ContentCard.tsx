@@ -13,7 +13,7 @@ export function ContentCard({ title, description, tags, href }: ContentCardProps
   return (
     <Link
       to={href}
-      className="group flex items-start justify-between py-4 last:border-0 hover:bg-accent/50 -mx-4 px-4 rounded-lg hover:outline outline-1 outline-offset-2 outline-transparent hover:outline-foreground/10 transition-all duration-200 ease-in-out"
+      className="group flex items-start justify-between py-4 last:border-0 hover:bg-accent/50 -mx-4 px-4 rounded-lg hover:outline outline-1 outline-offset-2 outline-transparent hover:outline-foreground/10 transition-all duration-200 ease-in-out border-l border-dashed pl-4"
     >
       <div className="space-y-2">
         <h3 className="font-mono text-sm font-medium text-foreground">{title}</h3>
