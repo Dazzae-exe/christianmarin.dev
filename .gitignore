@@ -1,3 +1,8 @@
+# Claude
+.claude
+.agents
+CLAUDE.md
+
 # Logs
 logs
 *.log
