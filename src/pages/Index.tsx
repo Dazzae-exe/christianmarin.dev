@@ -20,18 +20,6 @@ const workExperience = [
     href: "https://chicksx.com/",
   },
   {
-    company: "Importa Max",
-    role: "Full Stack Engineer",
-    period: "Aug. 2025 - Nov. 2025",
-    href: "https://importa-max.com/",
-  },
-  {
-    company: "Arsport Nutrition Store",
-    role: "Full Stack Engineer",
-    period: "July. 2024 - Nov. 2024",
-    href: "https://arsportnutrition.com",
-  },
-  {
     company: "Vedia Games",
     role: "Front-end Engineer",
     period: "Jan. 2023 - Apr. 2023",
