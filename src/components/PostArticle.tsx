@@ -5,13 +5,6 @@ import AvatarImg from "@/assets/avatar-dazz.webp";
 export const PostArticle = ({ post }: { post: Post }) => {
     return (
         <div className="relative min-h-screen w-full bg-background">
-            <div
-                className="absolute inset-0 z-0"
-                style={{
-                    background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(226, 232, 240, 0.15), transparent 70%), var(--background)",
-                }}
-            />
-
             <div className="relative z-10 min-h-screen mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed">
                 <section className="px-6 py-10 flex flex-col items-center gap-4">
                     <h1 className="max-w-2xl text-center text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">

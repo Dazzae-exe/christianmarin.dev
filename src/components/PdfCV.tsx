@@ -181,7 +181,7 @@ export const PdfCV = () => {
                                 Frontend Development: React, Next.js, Svelte, Tailwind CSS, Storybook, Responsive Design.
                             </li>
                             <li>
-                                Backend & Databases: Node.js, Express.js, MongoDB, MySQL, Supabase, RESTful API Design.
+                                Backend & Databases: Node.js, Express.js, MongoDB, PostgreSQL, Supabase, RESTful API Design.
                             </li>
                             <li>
                                 Tools & Cloud Infrastructure: Git/GitHub, Generative AI Integration, SEO Optimization.

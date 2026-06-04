@@ -3,13 +3,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const ArticleSkeleton = () => {
     return (
         <div className="relative min-h-screen w-full bg-background">
-            <div
-                className="absolute inset-0 z-0"
-                style={{
-                    background: "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(226, 232, 240, 0.15), transparent 70%), var(--background)",
-                }}
-            />
-
             <div className="relative z-10 mx-auto max-w-3xl space-y-8 px-4 pt-12 sm:space-y-10 sm:px-6 sm:pt-16 lg:pt-20">
                 <div className="flex w-full flex-col items-center justify-center space-y-4">
                     <Skeleton className="h-8 w-2/3 max-w-2xl md:h-10" />
