@@ -119,7 +119,7 @@ const Index = () => {
               <ContentCard
                 key={post.id}
                 title={post.title}
-                description={post.description || ""}
+                description={post.excerpt || ""}
                 href={`/posts/${post.id}`}
                 tags={[]}
               />
