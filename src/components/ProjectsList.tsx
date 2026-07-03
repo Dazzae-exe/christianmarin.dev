@@ -49,7 +49,7 @@ export const ProjectsList = () => {
                 <div className="border-t border-dashed w-full" />
                 <div className="px-6 py-6 space-y-6">
                     {projects.map((project) => (
-                        <ContentCard key={project.id} title={project.title} href={`/projects/${project.slug}`} description={project.description || ''} tags={[]} />
+                        <ContentCard key={project.id} title={project.title} href={`/projects/${project.slug}`} description={project.description || ''} tags={project.tags || []} />
                     ))}
                 </div>
             </section>

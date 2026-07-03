@@ -1,9 +1,13 @@
 export interface Post {
-    id: number;
-    created_at?: string | Date;
+    id: string;
+    user_id: string;
     title: string;
     content: string;
-    description?: string;
-    created_by?: string;
-    duration_time?: number;
+    excerpt?: string | null;
+    slug?: string | null;
+    cover_image?: string | null;
+    published: boolean;
+    featured: boolean;
+    created_at: string;
+    updated_at: string;
 }

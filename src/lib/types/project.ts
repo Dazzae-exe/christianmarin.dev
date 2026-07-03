@@ -1,12 +1,15 @@
 export interface Project {
-    id: number;
-    created_at?: string | Date;
+    id: string;
+    user_id: string;
     title: string;
-    description?: string;
+    description?: string | null;
+    content: string;
     slug: string;
-    project_content?: string;
-    client?: string;
-    status: 'active' | 'completed' | 'paused';
-    tags?: string[];
-    role: string;
+    cover_image?: string | null;
+    github_url?: string | null;
+    demo_url?: string | null;
+    tags?: string[] | null;
+    published: boolean;
+    created_at: string;
+    updated_at: string;
 }
