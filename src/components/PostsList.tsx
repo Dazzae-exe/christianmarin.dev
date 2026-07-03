@@ -49,7 +49,7 @@ export const PostsList = () => {
                 <div className="border-t border-dashed w-full" />
                 <div className="px-6 py-6 space-y-6">
                     {posts.map((post) => (
-                        <ContentCard key={post.id} title={post.title} href={`/posts/${post.id}`} description={post.description || ''} tags={[]} />
+                        <ContentCard key={post.id} title={post.title} href={`/posts/${post.id}`} description={post.excerpt || ''} tags={[]} />
                     ))}
                 </div>
             </section>

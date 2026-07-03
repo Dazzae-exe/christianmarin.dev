@@ -11,7 +11,7 @@ export const PostArticle = ({ post }: { post: Post }) => {
                         {post.title}
                     </h1>
                     <CreatorCard
-                        name={post.created_by || "Unknown Author"}
+                        name="Christian Marín"
                         date={post.created_at ? new Date(post.created_at) : null}
                         avatar={AvatarImg}
                     />
@@ -20,7 +20,7 @@ export const PostArticle = ({ post }: { post: Post }) => {
                 <div className="border-t border-dashed w-full" />
 
                 <div className="px-6 py-4 text-center text-sm font-medium leading-relaxed sm:text-base md:text-lg text-muted-foreground">
-                    {post.description}
+                    {post.excerpt}
                 </div>
 
                 <div className="border-t border-dashed w-full" />
