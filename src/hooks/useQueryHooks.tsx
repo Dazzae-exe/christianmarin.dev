@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { getPost, getPosts } from '@/lib/supabase/endpoints/posts/postQuery';
-import { getProject, getProjects } from '@/lib/supabase/endpoints/projects/projectQuery';
+import { getPost, getPosts } from '@/services/posts/postQuery';
+import { getProject, getProjects } from '@/services/projects/projectQuery';
 
 const usePosts = () => {
     return useQuery({

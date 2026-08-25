@@ -86,10 +86,14 @@ src/
 	components/         # Reusable UI and feature components
 	hooks/              # Query hooks (posts/projects)
 	lib/
-		supabase/         # Supabase client + endpoint query modules
+		supabase/         # Supabase client configuration only
 		types/            # Shared domain types
 	pages/              # Page-level components
 	routes/             # TanStack Router route files
+	services/           # Data access layer (queries/mutations)
+		analytics/        # Page view tracking
+		posts/            # Post queries
+		projects/         # Project queries
 ```
 
 ---
@@ -108,7 +112,7 @@ Create a `.env` file in the project root:
 
 ```bash
 VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=your_supabase_anon_or_publishable_key
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_or_publishable_key
 ```
 
 ### 3) Run the app

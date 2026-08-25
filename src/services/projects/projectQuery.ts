@@ -1,4 +1,4 @@
-import supabase from "../../supabase";
+import supabase from "@/lib/supabase/supabase";
 import type { Project } from "@/lib/types/project";
 
 const getProjects = async (): Promise<Project[]> => {

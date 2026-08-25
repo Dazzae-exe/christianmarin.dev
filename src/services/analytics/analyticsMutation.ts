@@ -1,4 +1,4 @@
-import supabase from "../../supabase";
+import supabase from "@/lib/supabase/supabase";
 import type { AnalyticsResourceType } from "@/lib/types/analytics";
 
 const VISITOR_ID_KEY = "portfolio-visitor-id";
