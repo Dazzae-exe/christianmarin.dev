@@ -24,7 +24,7 @@ jobs:
               run: date
 
             - name: Archivos del proyecto
-              run: ls- la
+              run: ls -la
             
             - name: Decir adios
               run: echo "Adios"
