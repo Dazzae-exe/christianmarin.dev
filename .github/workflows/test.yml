@@ -12,7 +12,7 @@ on:
 # Los trabajos que tiene que realizar
 jobs:
   # Nombre que queramos para el trabajo
-  hello-exampe:
+  hello-example:
     # Utilizar siempre latest esta mal
     runs-on: ubuntu-24.04
     # Los pasos que debe realizar este trabajo
@@ -28,3 +28,13 @@ jobs:
 
       - name: Decir adios
         run: echo "Adios"
+
+  # archivos de repositorio
+  repo-files:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Descargar código del repo
+        uses: actions/checkout@v6
+
+      - name: Ver archivos disponibles
+        run: ls -la
