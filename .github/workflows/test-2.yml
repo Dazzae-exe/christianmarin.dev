@@ -1,0 +1,25 @@
+# Manual
+
+name: Test 2 - Manual
+
+on:
+  workflow_dispatch:
+
+jobs:
+  # Nombre que queramos para el trabajo
+  manual:
+    # Utilizar siempre latest esta mal
+    runs-on: ubuntu-24.04
+    # Los pasos que debe realizar este trabajo
+    steps:
+      - name: Saludar
+        run: echo "Hola desde GitHub Actions"
+
+      - name: Ver fecha del runner
+        run: date
+
+      - name: Archivos del proyecto
+        run: ls -la
+
+      - name: Decir adios
+        run: echo "Adios"
