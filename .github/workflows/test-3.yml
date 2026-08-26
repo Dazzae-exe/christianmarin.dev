@@ -1,0 +1,15 @@
+# Schedule - Calendario
+
+name: Test 3 - Schedule
+
+on:
+  schedule:
+    # 1er 0: minuto, 2do 0: hora, *: cualquier dia del mes, *: cualquier mes, *: cualquier dia de la semana
+    - cron: "0 0 * * *" # Ejecutar todos los días a medianoche
+
+jobs:
+  schedule:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Saludar
+        run: echo " Hola desde el Calendario"
