@@ -11,6 +11,8 @@ on:
 jobs:
   issue:
     runs-on: ubuntu-24.04
+    permissions:
+      issues: write
     steps:
       - name: Inspeccionar eventos
         run: |
