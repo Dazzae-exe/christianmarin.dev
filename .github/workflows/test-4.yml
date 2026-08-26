@@ -21,3 +21,11 @@ jobs:
           echo "Título de issue: ${{ github.event.issue.title }}"
           echo "Cuerpo de issue: ${{ github.event.issue.body }}"
           echo "Usuario que abrió la issue: ${{ github.event.issue.user.login }}"
+
+      - name: Comentar como bot en GitHub Actions
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: gh issue comment $ISSUE_NUMBER --repo $GITHUB_REPOSITORY --body "Gracias por abrir la issue. Estamos revisando tu solicitud."
