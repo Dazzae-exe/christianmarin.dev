@@ -11,6 +11,7 @@ on:
 jobs:
   issue:
     runs-on: ubuntu-24.04
+    # Permisos para que el bot pueda realizar alguna acción, por ejemplo, comentar en la issue.
     permissions:
       issues: write
     steps:
@@ -31,3 +32,10 @@ jobs:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: gh issue comment $ISSUE_NUMBER --repo $GITHUB_REPOSITORY --body "Gracias por abrir la issue. Estamos revisando tu solicitud."
+      - name: Comentar como autor en Issues con GH Actions
+        if: github.event_name == 'issues' && github.event.action == 'opened'
+        env:
+          GH_ACCESS_TOKEN: ${{ secrets.PERSONAL_ISSUES_ACCESS_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: GH_TOKEN="GH_ACCESS_TOKEN" gh issue comment $ISSUE_NUMBER --repo $GITHUB_REPOSITORY --body "Gracias por abrir la issue. Estamos revisando la solicitud"
