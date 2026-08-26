@@ -1,9 +1,50 @@
 # Manual
+# Se dispara de forma manual en actions de GitHub
+# Es para temas mas manuales, cosas muy concretas que quieres controlar.
 
 name: Test 2 - Manual
 
 on:
   workflow_dispatch:
+    # Pueden pasar inputs al workflow, se utilizan para testing como end to end.
+    inputs:
+      log_level:
+        description: "Log level"
+        required: true
+        default: "info"
+        type: choice
+        options: ["info", "debug", "warn", "error"]
+
+      # Entorno que quiero utilizar para ejecutar el workflow
+      environment:
+        description: "Entorno de ejecución"
+        # En lugar de utilizar el choice tambien puedes utilizar el
+        # type environment el cual saldra un dropdown con los entornos
+        # que tengas configurados en tu repo.
+        type: environment
+
+      # Si quiero ejecutar el workflow en modo dry run,
+      # es decir, que no aplique los cambios
+      dry_run:
+        description: "Ejecutar sin aplicar los cambios"
+        required: false
+        default: false
+        type: boolean
+
+      # La version del workflow que quiero ejecutar,
+      # esto es util para testing de nuevas versiones
+      version:
+        description: "Version del workflow"
+        required: false
+        default: "1.0.0"
+        type: string
+
+      # reason, es un input que se utiliza para pasar un motivo de ejecución del workflow,
+      reason:
+        description: "Motivo de la ejecución del workflow"
+        required: false
+        default: "Testing execution"
+        type: string
 
 jobs:
   # Nombre que queramos para el trabajo
@@ -12,14 +53,25 @@ jobs:
     runs-on: ubuntu-24.04
     # Los pasos que debe realizar este trabajo
     steps:
-      - name: Saludar
-        run: echo "Hola desde GitHub Actions"
+      - name: Mostrar todos los inputs
+        env:
+          LOG_LEVEL: ${{ inputs.log_level }}
+          ENVIRONMENT: ${{ inputs.environment }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          REASON: ${{ inputs.reason }}
+        run: |
+          echo "LOG LEVEL: $LOG_LEVEL"
+          echo "ENVIRONMENT: $ENVIRONMENT"
+          echo "DRY RUN: $DRY_RUN"
+          echo "REASON: $REASON"
+      - name: Deploy (solo si no es dry run)
+        if: ${{ !inputs.dry_run }}
+        env:
+          ENVIRONMENT: ${{ inputs.environment }}
+        run: |
+          echo "Deploying to $ENVIRONMENT"
 
-      - name: Ver fecha del runner
-        run: date
-
-      - name: Archivos del proyecto
-        run: ls -la
-
-      - name: Decir adios
-        run: echo "Adios"
+      - name: Solo log si es dry run
+        if: ${{ inputs.dry_run }}
+        run: |
+          echo "Dry run: no changes applied"
