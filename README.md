@@ -1,5 +1,7 @@
 # Christian Marín — Portfolio (Blog + Project Showcase)
 
+[![.github/workflows/ci.yml](https://github.com/Dazzae-exe/christianmarin.dev/actions/workflows/ci.yml/badge.svg)](https://github.com/Dazzae-exe/christianmarin.dev/actions/workflows/ci.yml)
+
 A modern personal portfolio built with **React + TypeScript** to showcase professional work, projects, and technical writing in one place.
 
 This app combines:
