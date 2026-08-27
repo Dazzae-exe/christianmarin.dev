@@ -20,7 +20,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v6
       with:
-        version: ${{ inputs.node-version }}
+        node-version: ${{ inputs.node-version }}
         cache: 'pnpm'
 
     - name: Setup pnpm
