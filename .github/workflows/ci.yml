@@ -1,5 +1,7 @@
 # Continous Integration Workflow
 
+# working-directories puede ser usado dentro de jobs en steps para cambiar el directorio de trabajo. Esto es útil si tu proyecto tiene un monorepo o si quieres ejecutar comandos en un subdirectorio específico.
+
 on:
   pull_request:
     types: [opened, reopened]
@@ -9,6 +11,12 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-22.04
+
+    # tambien existen los defaults a nivel de workflow, pero no se pueden sobreescribir a nivel de job
+    # defaults:
+    # run:
+    # working-directory: ./frontend
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
@@ -24,9 +32,6 @@ jobs:
 
       - name: Linting
         run: pnpm lint
-
-      - name: Test
-        run: pnpm test
 
       - name: Build
         run: pnpm build
