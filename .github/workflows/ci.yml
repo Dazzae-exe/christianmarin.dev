@@ -17,16 +17,10 @@ jobs:
     # run:
     # working-directory: ./frontend
 
+    # implementación de la accion personalizada para configurar pnpm y node.js
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
-      - name: Preparar pnpm
-        uses: pnpm/setup@v2
-        with:
-          version: 11
-          install: false
-
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/pnpm-setup
       - name: Instalar dependencias
         run: pnpm install --frozen-lockfile
 
