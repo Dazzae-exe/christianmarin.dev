@@ -9,24 +9,44 @@ on:
     branches: [main]
 
 jobs:
-  ci:
+  # Flujo de CI con needs para que se dispare la tarea siguiente y actions personalizadas
+
+  front-end-pnpm-install:
     runs-on: ubuntu-22.04
-
-    # tambien existen los defaults a nivel de workflow, pero no se pueden sobreescribir a nivel de job
-    # defaults:
-    # run:
-    # working-directory: ./frontend
-
-    # implementación de la accion personalizada para configurar pnpm y node.js
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v6
+      - uses: actions/checkout@v6
       - uses: ./.github/actions/pnpm-setup
       - name: Instalar dependencias
         run: pnpm install --frozen-lockfile
 
+  front-end-lint:
+    needs: front-end-pnpm-install
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/pnpm-setup
       - name: Linting
         run: pnpm lint
 
+  front-end-build:
+    needs: front-end-lint
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ./.github/actions/pnpm-setup
       - name: Build
         run: pnpm build
+
+  #ci:
+  #runs-on: ubuntu-22.04
+
+  # tambien existen los defaults a nivel de workflow, pero no se pueden sobreescribir a nivel de job
+  # defaults:
+  # run:
+  # working-directory: ./frontend
+
+  # implementación de la accion personalizada para configurar pnpm y node.js
+  #steps:
+  #  - name: Checkout repo
+  #    uses: actions/checkout@v6
+  #  - uses: ./.github/actions/pnpm-setup
