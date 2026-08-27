@@ -19,7 +19,8 @@ jobs:
 
     # implementación de la accion personalizada para configurar pnpm y node.js
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout repo
+        uses: actions/checkout@v6
       - uses: ./.github/actions/pnpm-setup
       - name: Instalar dependencias
         run: pnpm install --frozen-lockfile
