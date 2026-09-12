@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { PDFViewer } from "@react-pdf/renderer";
-import { ArrowLeft, Check, FileText } from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
 import {
     Dialog,
@@ -8,7 +8,6 @@ import {
     DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { PdfCV } from "@/components/PdfCV.tsx";
@@ -46,12 +45,16 @@ const COPY: Record<CVLocale, { viewing: string; back: string }> = {
     },
 };
 
-export const DialogCV = () => {
-    const [open, setOpen] = useState(false);
+type DialogCVProps = {
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
+};
+
+export const DialogCV = ({ open, onOpenChange }: DialogCVProps) => {
     const [locale, setLocale] = useState<CVLocale | null>(null);
 
     const handleOpenChange = (nextOpen: boolean) => {
-        setOpen(nextOpen);
+        onOpenChange(nextOpen);
         if (!nextOpen) {
             // Reset back to the language picker for the next visit.
             setTimeout(() => setLocale(null), 200);
@@ -60,13 +63,6 @@ export const DialogCV = () => {
 
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
-            <DialogTrigger asChild>
-                <Button className="font-mono">
-                    <FileText />
-                    View CV
-                </Button>
-            </DialogTrigger>
-
             <DialogContent
                 showCloseButton
                 className={cn(
@@ -77,7 +73,7 @@ export const DialogCV = () => {
                 {locale === null ? (
                     <div className="p-6">
                         <DialogHeader className="space-y-2">
-                            <DialogTitle className="font-mono text-xl tracking-tight">
+                            <DialogTitle className="text-xl font-normal tracking-[-0.02em]">
                                 Choose a language
                             </DialogTitle>
                             <DialogDescription>
@@ -95,16 +91,16 @@ export const DialogCV = () => {
                                     key={option.value}
                                     variant="outline"
                                     onClick={() => setLocale(option.value)}
-                                    className="group h-auto w-full justify-start gap-4 rounded-lg px-4 py-4 text-left hover:border-primary/40"
+                                    className="group h-auto w-full justify-start gap-4 rounded-xl px-4 py-4 text-left shadow-none hover:border-foreground/25"
                                 >
                                     <span
                                         aria-hidden
-                                        className="text-xl leading-none transition-transform group-hover:scale-110"
+                                        className="text-xl leading-none transition-transform duration-500 group-hover:scale-110"
                                     >
                                         {option.flag}
                                     </span>
                                     <span className="flex flex-1 flex-col gap-0.5 overflow-hidden">
-                                        <span className="font-mono text-sm font-semibold">
+                                        <span className="text-sm font-medium">
                                             {option.nativeLabel}
                                         </span>
                                         <span className="truncate text-xs font-normal text-muted-foreground">
@@ -118,7 +114,7 @@ export const DialogCV = () => {
                 ) : (
                     <div className="flex max-h-[85vh] flex-col">
                         <DialogHeader className="space-y-1 px-6 pt-6 pb-4 text-left">
-                            <DialogTitle className="font-mono text-lg tracking-tight">
+                            <DialogTitle className="text-lg font-normal tracking-[-0.02em]">
                                 Christian Marín — CV
                             </DialogTitle>
                             <DialogDescription>{COPY[locale].viewing}</DialogDescription>
@@ -129,7 +125,7 @@ export const DialogCV = () => {
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setLocale(null)}
-                                className="font-mono text-xs"
+                                className="text-xs"
                             >
                                 <ArrowLeft />
                                 {COPY[locale].back}
@@ -137,7 +133,7 @@ export const DialogCV = () => {
 
                             <Separator orientation="vertical" className="mx-1 !h-5" />
 
-                            <div className="flex items-center gap-1 rounded-md border border-border/60 bg-muted/40 p-1">
+                            <div className="flex items-center gap-1 rounded-full bg-muted p-1">
                                 {LOCALE_OPTIONS.map((option) => (
                                     <Button
                                         key={option.value}
@@ -145,7 +141,10 @@ export const DialogCV = () => {
                                         size="sm"
                                         onClick={() => setLocale(option.value)}
                                         aria-pressed={locale === option.value}
-                                        className="h-7 font-mono text-xs"
+                                        className={cn(
+                                            "h-7 rounded-full text-xs",
+                                            locale === option.value && "bg-background hover:bg-background",
+                                        )}
                                     >
                                         {locale === option.value ? <Check /> : null}
                                         {option.nativeLabel}

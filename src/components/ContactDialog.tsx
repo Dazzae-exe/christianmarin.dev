@@ -6,16 +6,18 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner"
-import { Mail } from "lucide-react";
 
-export function ContactDialog() {
-  const [open, setOpen] = useState(false);
+type ContactDialogProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
+
+export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -26,82 +28,74 @@ export function ContactDialog() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     toast.success("Message sent successfully!");
-    
+
     setFormData({ name: '', email: '', message: '' });
     setIsSubmitting(false);
-    setOpen(false);
+    onOpenChange(false);
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="ghost" size="sm" className="gap-2 font-mono text-sm hover:bg-accent">
-          <Mail className="h-4 w-4" />
-            Contact Me
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-background border-border">
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="sm:max-w-[440px]">
         <DialogHeader>
-          <DialogTitle className="font-heading">Contact Me</DialogTitle>
-          <DialogDescription className="text-muted-foreground">
+          <DialogTitle className="text-xl font-normal tracking-[-0.02em]">Contact me</DialogTitle>
+          <DialogDescription>
             Feel free to reach out by filling the form below.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
+        <form onSubmit={handleSubmit} className="space-y-4 mt-2">
           <div className="space-y-2">
-            <Label htmlFor="name" className="font-mono text-sm">Name</Label>
+            <Label htmlFor="name">Name</Label>
             <Input
               id="name"
               placeholder="Your name"
+              autoComplete="name"
               value={formData.name}
               onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
               required
-              className="font-mono"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email" className="font-mono text-sm">Email</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
               id="email"
               type="email"
-              placeholder="Your email"
+              placeholder="you@example.com"
+              autoComplete="email"
               value={formData.email}
               onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
               required
-              className="font-mono"
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="message" className="font-mono text-sm">Message</Label>
+            <Label htmlFor="message">Message</Label>
             <Textarea
               id="message"
-              placeholder="Your message"
+              placeholder="What would you like to talk about?"
               value={formData.message}
               onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
               required
-              className="min-h-[120px] font-mono resize-none"
+              className="min-h-[120px] resize-none"
             />
           </div>
-          <div className="flex justify-end gap-3 pt-2">
-            <Button 
-              type="button" 
-              variant="outline" 
-              onClick={() => setOpen(false)}
-              className="font-mono"
+          <div className="flex justify-end gap-2 pt-2">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={() => onOpenChange(false)}
             >
               Cancel
             </Button>
-            <Button 
-              type="submit" 
+            <Button
+              type="submit"
               disabled={isSubmitting}
-              className="font-mono"
             >
-              {isSubmitting ? '...' : "Send"}
+              {isSubmitting ? "Sending…" : "Send message"}
             </Button>
           </div>
         </form>

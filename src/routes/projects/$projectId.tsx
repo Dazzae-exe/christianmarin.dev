@@ -1,7 +1,8 @@
 import { ProjectArticle } from '@/components/ProjectArticle';
 import { ArticleSkeleton } from '@/components/ArticleSkeleton';
+import { StatusMessage } from '@/components/StatusMessage';
 import { useProject } from '@/hooks/useQueryHooks';
-import { createFileRoute } from '@tanstack/react-router'
+import { Link, createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/projects/$projectId')({
   component: RouteComponent,
@@ -9,26 +10,29 @@ export const Route = createFileRoute('/projects/$projectId')({
 
 function RouteComponent() {
   const { projectId } = Route.useParams();
-  const { data: project, isLoading, error } = useProject(projectId);
+  const { data: project, isLoading, error, refetch } = useProject(projectId);
 
   if (isLoading) return <ArticleSkeleton />;
 
   if (error) return (
-    <div>
-      <div className="border-t border-dashed w-full" />
-      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed px-6 py-6 text-muted-foreground">
-        Error loading project.
-      </div>
-    </div>
+    <StatusMessage
+      title="Couldn't load this project"
+      description="Check your connection and try again."
+      action={
+        <>
+          <button type="button" onClick={() => refetch()} className="text-link">Try again</button>
+          <Link to="/projects" className="text-muted-foreground transition-colors duration-500 hover:text-foreground">Back to projects</Link>
+        </>
+      }
+    />
   );
 
   if (!project) return (
-    <div>
-      <div className="border-t border-dashed w-full" />
-      <div className="mx-6 md:mx-auto max-w-2xl border-l border-r border-dashed px-6 py-6 text-muted-foreground">
-        Project not found.
-      </div>
-    </div>
+    <StatusMessage
+      title="Project not found"
+      description="It may have been moved or unpublished."
+      action={<Link to="/projects" className="text-link">Back to projects</Link>}
+    />
   );
 
   return <ProjectArticle project={project} />;

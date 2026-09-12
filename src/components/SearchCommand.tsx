@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { Search } from "lucide-react";
-import { Kbd } from "@/components/ui/kbd";
+import { ArrowUpRight, FileText, Laptop, Mail, Moon, Sun } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 import {
   CommandDialog,
   CommandEmpty,
@@ -8,62 +7,90 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
 } from "@/components/ui/command";
-import { Link } from "@tanstack/react-router";
+import { useTheme } from "@/components/ThemeProvider";
+import { navItems, socialLinks } from "@/lib/data/navigation";
+import { nextTheme, themeLabel } from "@/lib/theme";
 
-const pages = [
-  { name: "Home", href: "/" },
-  { name: "Posts", href: "/posts" },
-  { name: "Projects", href: "/projects" }
-];
+const themeIcon = { light: Sun, dark: Moon, system: Laptop };
 
-export function SearchCommand() {
-  const [open, setOpen] = useState(false);
+type SearchCommandProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onContact: () => void;
+  onCV: () => void;
+};
 
-  useEffect(() => {
-    const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault();
-        setOpen((open) => !open);
-      }
-    };
-
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
-  }, []);
+export function SearchCommand({ open, onOpenChange, onContact, onCV }: SearchCommandProps) {
+  const navigate = useNavigate();
+  const { theme, setTheme } = useTheme();
+  const upcomingTheme = nextTheme(theme);
+  const ThemeIcon = themeIcon[upcomingTheme];
 
   return (
-    <>
-      <button
-        onClick={() => setOpen(true)}
-        className="flex items-center gap-2 rounded-md border border-dashed border-border bg-transparent px-3 py-1.5 font-mono text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-all duration-200"
-      >
-        <Search className="h-4 w-4" />
-        <span className="hidden sm:inline-block">Search pages...</span>
-        <div className="hidden sm:flex items-center gap-1 ml-2">
-          <Kbd>⌘</Kbd>
-          <Kbd>K</Kbd>
-        </div>
-      </button>
+    <CommandDialog
+      open={open}
+      onOpenChange={onOpenChange}
+      title="Search"
+      description="Jump to a page or run an action"
+    >
+      <CommandInput placeholder="Search pages and actions…" />
+      <CommandList>
+        <CommandEmpty>Nothing matches that search.</CommandEmpty>
 
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Search pages..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Pages">
-            {pages.map((page) => (
-              <CommandItem
-                key={page.href}
-                asChild
-              >
-                <Link to={page.href} onClick={() => setOpen(false)}>
-                  {page.name}
-                </Link>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </CommandDialog>
-    </>
+        <CommandGroup heading="Pages">
+          {navItems.map((item) => (
+            <CommandItem
+              key={item.href}
+              value={item.name}
+              onSelect={() => {
+                onOpenChange(false);
+                navigate({ to: item.href });
+              }}
+            >
+              <item.icon />
+              {item.name}
+            </CommandItem>
+          ))}
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="Actions">
+          <CommandItem value="theme toggle appearance" onSelect={() => setTheme(upcomingTheme)}>
+            <ThemeIcon />
+            Switch to {themeLabel[upcomingTheme].toLowerCase()} theme
+          </CommandItem>
+          <CommandItem value="contact message email" onSelect={onContact}>
+            <Mail />
+            Contact me
+          </CommandItem>
+          <CommandItem value="cv resume" onSelect={onCV}>
+            <FileText />
+            View CV
+          </CommandItem>
+        </CommandGroup>
+
+        <CommandSeparator />
+
+        <CommandGroup heading="Links">
+          {socialLinks.map((link) => (
+            <CommandItem
+              key={link.href}
+              value={link.name}
+              onSelect={() => {
+                window.open(link.href, "_blank", "noopener,noreferrer");
+                onOpenChange(false);
+              }}
+            >
+              <link.icon />
+              {link.name}
+              <ArrowUpRight className="ml-auto text-muted-foreground" />
+            </CommandItem>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </CommandDialog>
   );
 }
