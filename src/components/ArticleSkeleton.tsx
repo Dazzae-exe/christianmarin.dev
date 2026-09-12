@@ -2,36 +2,33 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export const ArticleSkeleton = () => {
     return (
-        <div className="relative min-h-screen w-full bg-background">
-            <div className="relative z-10 mx-auto max-w-3xl space-y-8 px-4 pt-12 sm:space-y-10 sm:px-6 sm:pt-16 lg:pt-20">
-                <div className="flex w-full flex-col items-center justify-center space-y-4">
-                    <Skeleton className="h-8 w-2/3 max-w-2xl md:h-10" />
-                    <div className="w-fit rounded-[7px] border px-4 py-2">
-                        <div className="flex items-center space-x-4">
-                            <Skeleton className="h-12 w-12 rounded-full" />
-                            <div className="space-y-2">
-                                <Skeleton className="h-5 w-36" />
-                                <Skeleton className="h-4 w-28" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div aria-busy="true" className="max-w-[40rem]">
+            <Skeleton className="h-4 w-16" />
 
-                <div className="mx-auto flex max-w-2xl flex-col items-center space-y-2">
-                    <Skeleton className="h-4 w-3/4" />
-                    <Skeleton className="h-4 w-2/3" />
-                </div>
+            <div className="mt-10 space-y-3">
+                <Skeleton className="h-10 w-full" />
+                <Skeleton className="h-10 w-2/3" />
+            </div>
 
-                <article className="pb-12 sm:pb-16">
-                    <div className="space-y-3">
-                        <Skeleton className="h-4 w-full md:h-5" />
-                        <Skeleton className="h-4 w-full md:h-5" />
-                        <Skeleton className="h-4 w-11/12 md:h-5" />
-                        <Skeleton className="h-4 w-full md:h-5" />
-                        <Skeleton className="h-4 w-10/12 md:h-5" />
-                        <Skeleton className="h-4 w-full md:h-5" />
-                    </div>
-                </article>
+            <div className="mt-6 flex items-center gap-2.5">
+                <Skeleton className="size-6 rounded-full" />
+                <Skeleton className="h-4 w-44" />
+            </div>
+
+            <div className="mt-10 space-y-2.5">
+                <Skeleton className="h-5 w-full" />
+                <Skeleton className="h-5 w-4/5" />
+            </div>
+
+            <div className="my-12 h-px bg-border" />
+
+            <div className="space-y-3">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-11/12" />
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-10/12" />
+                <Skeleton className="h-4 w-3/4" />
             </div>
         </div>
     );
