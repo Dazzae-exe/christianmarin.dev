@@ -2,10 +2,10 @@ import { Avatar } from "@/components/Avatar";
 import { Reveal } from "@/components/Reveal";
 import { ScrambleText } from "@/components/ScrambleText";
 import AvatarDazz from "@/assets/avatar-dazz.webp";
-import Globe from "@/assets/hero-page/sphere-halftone-gif.jpeg";
-import Poster from "@/assets/hero-page/pinterest-technologie-welt-computer-enact.jpg";
-import Brochure from "@/assets/hero-page/brochure-design.jpeg";
-import Sculptor from "@/assets/hero-page/pinterest-blue-ui-conference-branding-arabic-design-x.jpg";
+import Globe from "@/assets/hero-page/sphere-halftone-gif.webp";
+import Poster from "@/assets/hero-page/pinterest-technologie-welt-computer-enact.webp";
+import Brochure from "@/assets/hero-page/brochure-design.webp";
+import Sculptor from "@/assets/hero-page/pinterest-blue-ui-conference-branding-arabic-design-x.webp";
 
 const year = String(new Date().getFullYear());
 
@@ -14,6 +14,7 @@ const HeroImage = ({ src, className }: { src: string; className: string }) => (
     src={src}
     alt=""
     decoding="async"
+    fetchPriority="high"
     className={`h-[1.84em] shrink-0 object-cover shadow-[0_0.04em_0.12em_rgb(0_0_0/0.12)] ${className}`}
   />
 );

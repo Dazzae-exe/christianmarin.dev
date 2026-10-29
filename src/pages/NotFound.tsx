@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router"
-import Brochure from "@/assets/hero-page/brochure-design.jpeg"
-import Conference from "@/assets/hero-page/pinterest-blue-ui-conference-branding-arabic-design-x.jpg"
-import Expo from "@/assets/hero-page/pinterest-motion-graphique-expo-universelle-visualisation.jpg"
-import Technologie from "@/assets/hero-page/pinterest-technologie-welt-computer-enact.jpg"
-import Sphere from "@/assets/hero-page/sphere-halftone-gif.jpeg"
+import Brochure from "@/assets/hero-page/brochure-design.webp"
+import Conference from "@/assets/hero-page/pinterest-blue-ui-conference-branding-arabic-design-x.webp"
+import Expo from "@/assets/hero-page/pinterest-motion-graphique-expo-universelle-visualisation.webp"
+import Technologie from "@/assets/hero-page/pinterest-technologie-welt-computer-enact.webp"
+import Sphere from "@/assets/hero-page/sphere-halftone-gif.webp"
 
 const ASCII_404 = String.raw`
  _  _    ___  _  _
