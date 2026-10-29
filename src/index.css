@@ -299,13 +299,11 @@
   transform: none;
 }
 
-.folder {
+.peek {
   --folder-ease: cubic-bezier(0.16, 1, 0.3, 1);
   position: absolute;
   top: 50%;
   left: calc(100% + 0.875rem);
-  width: 4rem;
-  height: 3.125rem;
   translate: 0 -50%;
   scale: 0.85;
   opacity: 0;
@@ -363,10 +361,64 @@
   transition: transform 550ms var(--folder-ease);
 }
 
-:is(a:hover, a:focus-visible) > .folder {
+.folder {
+  width: 4rem;
+  height: 3.125rem;
+}
+
+.cloud {
+  width: 2.75rem;
+  aspect-ratio: 473 / 745;
+  overflow: hidden;
+  border-radius: 2px;
+  background: rgb(39 87 255);
+  box-shadow: 0 4px 12px -4px oklch(0 0 0 / 30%);
+  rotate: 4deg;
+  transition-property: opacity, scale, filter, rotate;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: invert(1);
+    mix-blend-mode: screen;
+  }
+}
+
+:is(a:hover, a:focus-visible) > .cloud {
+  rotate: 0deg;
+}
+
+.mail-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  rotate: -6deg;
+  transition-property: opacity, scale, filter, rotate;
+}
+
+.mail-icon-envelope {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(3px) scale(0.92);
+  transition: transform 550ms var(--folder-ease);
+}
+
+:is(a:hover, a:focus-visible) > .mail-icon {
+  rotate: 0deg;
+
+  .mail-icon-envelope {
+    transform: none;
+    transition-delay: 80ms;
+  }
+}
+
+:is(a:hover, a:focus-visible) > .peek {
   scale: 1;
   opacity: 1;
   filter: none;
+}
+
+:is(a:hover, a:focus-visible) > .folder {
 
   .folder-front {
     transform: perspective(12rem) rotateX(-32deg);
@@ -385,8 +437,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .folder,
+  .peek,
   .folder-file,
+  .mail-icon-envelope,
   .folder-front {
     filter: none;
     transition: opacity 150ms linear;

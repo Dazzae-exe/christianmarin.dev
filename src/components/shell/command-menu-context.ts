@@ -2,7 +2,6 @@ import { createContext, use } from "react"
 
 type CommandMenu = {
   openSearch: () => void
-  openContact: () => void
 }
 
 export const CommandMenuContext = createContext<CommandMenu | null>(null)

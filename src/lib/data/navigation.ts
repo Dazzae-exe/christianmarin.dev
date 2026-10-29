@@ -9,3 +9,5 @@ export const socialLinks = [
   { name: "GitHub", href: "https://github.com/dazzae-exe", icon: Github },
   { name: "LinkedIn", href: "https://www.linkedin.com/in/christianmarindaza", icon: Linkedin },
 ] as const
+
+export const contactHref = "mailto:chrismarin0607@gmail.com"

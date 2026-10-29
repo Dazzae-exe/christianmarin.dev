@@ -10,7 +10,7 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import { useTheme } from "@/components/ThemeProvider";
-import { navItems, socialLinks } from "@/lib/data/navigation";
+import { contactHref, navItems, socialLinks } from "@/lib/data/navigation";
 import { nextTheme, themeLabel } from "@/lib/theme";
 
 const themeIcon = { light: Sun, dark: Moon, system: Laptop };
@@ -18,10 +18,9 @@ const themeIcon = { light: Sun, dark: Moon, system: Laptop };
 type SearchCommandProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onContact: () => void;
 };
 
-export function SearchCommand({ open, onOpenChange, onContact }: SearchCommandProps) {
+export function SearchCommand({ open, onOpenChange }: SearchCommandProps) {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
   const upcomingTheme = nextTheme(theme);
@@ -61,7 +60,11 @@ export function SearchCommand({ open, onOpenChange, onContact }: SearchCommandPr
             <ThemeIcon />
             Switch to {themeLabel[upcomingTheme].toLowerCase()} theme
           </CommandItem>
-          <CommandItem value="contact message email" onSelect={onContact}>
+          <CommandItem value="contact message email" onSelect={() => {
+              window.location.href = contactHref;
+              onOpenChange(false);
+            }}
+          >
             <Mail />
             Contact me
           </CommandItem>
