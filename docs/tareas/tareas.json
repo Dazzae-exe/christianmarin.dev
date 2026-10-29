@@ -1,0 +1,18 @@
+{
+  "project_name": "Christian Marin - Portfolio",
+  "description": "Portafolio de mi persona para agregar mis proyectos realizados y mi experiencia. Ademas, de agregar un blog para hablar sobre ciertas experiencias de lo que estoy aprendiendo y mas.",
+  "features": [
+    {
+      "id": 1,
+      "task_name": "Refactor de inicio de pagina",
+      "task_description": "Refactorizar el inicio de pagina con un nuevo aspecto para visualizar los blogs y proyectos. Las referencias estaran guardadas dentro del proyecto.",
+      "acceptance": [
+        "El nuevo diseno es identico que la referencia.",
+        "Las rutas funcionan correctamente",
+        "Que sea totalmente responsive",
+        "Que tenga animaciones interactivas segun la referencia."
+      ],
+      "status": "pending"
+    }
+  ]
+}

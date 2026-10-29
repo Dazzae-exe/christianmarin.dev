@@ -3,7 +3,6 @@ import { createContext, use } from "react"
 type CommandMenu = {
   openSearch: () => void
   openContact: () => void
-  openCV: () => void
 }
 
 export const CommandMenuContext = createContext<CommandMenu | null>(null)
