@@ -1,7 +1,5 @@
 import { Link } from "@tanstack/react-router"
-import { Avatar } from "@/components/Avatar"
 import { Kbd } from "@/components/ui/kbd"
-import AvatarDazz from "@/assets/avatar-dazz.webp"
 import { navItems, socialLinks } from "@/lib/data/navigation"
 import { ThemeCycleButton } from "./ThemeCycleButton"
 import { useCommandMenu } from "./command-menu-context"
@@ -16,13 +14,6 @@ export function SiteAside() {
   return (
     <aside className="sticky top-24 hidden h-[calc(100dvh-9rem)] flex-col justify-between self-start md:flex">
       <div>
-        <Link to="/" className="flex flex-col items-start gap-3 animate-blur-in">
-          <Avatar src={AvatarDazz} alt="" className="size-6" />
-          <span className="text-[0.9375rem] leading-7 font-medium text-foreground">
-            Christian Marín
-          </span>
-        </Link>
-
         <nav aria-label="Primary" className="animate-blur-in stagger-1">
           <ul>
             {navItems.map((item) => (
