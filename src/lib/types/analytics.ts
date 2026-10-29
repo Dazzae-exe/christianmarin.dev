@@ -1,4 +1,4 @@
-export type AnalyticsResourceType = 'page' | 'post' | 'project';
+export type AnalyticsResourceType = 'page' | 'project';
 
 export interface PageView {
     page_path: string;

@@ -10,7 +10,7 @@ type ArticleProps = {
     html: string;
     lede?: string | null;
     date?: string | null;
-    back: { to: "/posts" | "/projects"; label: string };
+    back: { to: "/projects"; label: string };
 };
 
 export function Article({ title, html, lede, date, back }: ArticleProps) {

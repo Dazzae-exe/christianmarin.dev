@@ -1,13 +1,12 @@
-# Christian Marín — Portfolio (Blog + Project Showcase)
+# Christian Marín — Portfolio (Project Showcase)
 
 [![.github/workflows/ci.yml](https://github.com/Dazzae-exe/christianmarin.dev/actions/workflows/ci.yml/badge.svg)](https://github.com/Dazzae-exe/christianmarin.dev/actions/workflows/ci.yml)
 
-A modern personal portfolio built with **React + TypeScript** to showcase professional work, projects, and technical writing in one place.
+A modern personal portfolio built with **React + TypeScript** to showcase professional work, and projects in one place.
 
 This app combines:
 
 - A clean personal landing page
-- A **blog section** powered by Supabase content
 - A **project showcase** with dedicated listing routes
 - Fast client-side navigation with TanStack Router
 - Cached data fetching with TanStack Query
@@ -22,24 +21,17 @@ This app combines:
 - Intro/profile section with avatar and summary
 - Work experience timeline with outbound links
 - Featured project highlights
-- Quick entry point to Posts and Projects sections
+- Quick entry point to the Projects section
 
-### 2) Blog System
-
-- `/posts` route lists blog entries from Supabase
-- `/posts/$postId` route renders an individual article view
-- Sorted by newest first (`created_at desc`)
-- Loading, empty-state, and error handling included
-
-### 3) Project Showcase
+### 2) Project Showcase
 
 - `/projects` route lists projects from Supabase
 - Card-based content previews
 - Dedicated project detail route scaffolded at `/projects/$projectId`
 
-### 4) Navigation + UX
+### 3) Navigation + UX
 
-- Sticky top navigation for Home / Posts / Projects
+- Sticky top navigation for Home / Projects
 - Command menu search (`⌘K` / `Ctrl+K`) for quick page jump
 - Footer with social links, contact dialog, language selector, and theme selector
 - Responsive layout with a consistent visual style
@@ -58,7 +50,7 @@ This app combines:
 
 - **TanStack Router** (file-based routing)
 - **TanStack Query** (server-state caching and query lifecycle)
-- **Supabase JS** (content backend for posts/projects)
+- **Supabase JS** (content backend for projects)
 
 ### UI & Styling
 
@@ -86,7 +78,7 @@ This app combines:
 ```bash
 src/
 	components/         # Reusable UI and feature components
-	hooks/              # Query hooks (posts/projects)
+	hooks/              # Query hooks (projects)
 	lib/
 		supabase/         # Supabase client configuration only
 		types/            # Shared domain types
@@ -94,7 +86,6 @@ src/
 	routes/             # TanStack Router route files
 	services/           # Data access layer (queries/mutations)
 		analytics/        # Page view tracking
-		posts/            # Post queries
 		projects/         # Project queries
 ```
 
@@ -146,9 +137,9 @@ For production, ensure the same `VITE_SUPABASE_*` environment variables are set 
 
 ## Notes
 
-- Data for posts and projects is fetched from Supabase tables.
+- Project data is fetched from Supabase tables.
 - Query caching is configured with a 5-minute stale window in custom hooks.
-- The codebase is organized to scale content sections cleanly (posts, projects, future additions).
+- The codebase is organized to scale content sections cleanly (projects, future additions).
 
 ---
 

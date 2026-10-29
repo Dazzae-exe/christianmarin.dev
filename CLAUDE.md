@@ -27,15 +27,14 @@ Despite the repo name, this is **not SSG**. It is a client-only React 19 SPA bui
 
 1. `src/services/<domain>/*Query.ts`: plain async functions that call Supabase and throw `Error` on failure.
 2. `src/hooks/useQueryHooks.tsx`: TanStack Query wrappers (5-minute `staleTime`). Global QueryClient defaults in `main.tsx` are `retry: 1` and `refetchOnWindowFocus: false`.
-3. Route components call the hooks and handle the loading (skeleton), error, and not-found states inline, using `StatusMessage` for error and empty states. `PostsList` and `ProjectsList` map their rows into the shared `ContentListPage`.
+3. Route components call the hooks and handle the loading (skeleton), error, and not-found states inline, using `StatusMessage` for error and empty states. `ProjectsList` maps its rows into the shared `ContentListPage`.
 
 **Supabase content model:**
 
-- `posts` are fetched by **`id` (UUID)**: `/posts/$postId`.
 - `projects` are fetched by **`slug`**: `/projects/$projectId` (the param is a slug despite its name).
-- `post.content` and `project.content` are **raw HTML**, rendered with `dangerouslySetInnerHTML` in the shared `Article.tsx`. `PostArticle` and `ProjectArticle` are thin wrappers around it. Styling comes from the `.article-prose` class in `src/index.css`, not from a markdown renderer.
+- `project.content` is **raw HTML**, rendered with `dangerouslySetInnerHTML` in the shared `Article.tsx`. `ProjectArticle` is a thin wrapper around it. Styling comes from the `.article-prose` class in `src/index.css`, not from a markdown renderer.
 
-**Analytics** (`src/services/analytics/analyticsMutation.ts`): each pathname change calls the `track_view` Supabase RPC. It resolves the resource from the URL: a UUID post id becomes a `post`, a project slug is looked up to its `id` for `project`, and anything else is a `page`. It also sends a visitor UUID persisted in localStorage. If post or project URL schemes change (for example, posts moving to slugs), update `resolveResource` to match.
+**Analytics** (`src/services/analytics/analyticsMutation.ts`): each pathname change calls the `track_view` Supabase RPC. It resolves the resource from the URL: a project slug is looked up to its `id` for `project`, and anything else is a `page`. It also sends a visitor UUID persisted in localStorage. If the project URL scheme changes, update `resolveResource` to match.
 
 **Static vs. remote content:** the home page (`src/pages/Index.tsx`) currently shows only the intro (avatar, headline, bio) and has no Supabase data. `src/lib/data/homeData.ts` (work history, featured projects) and `WorkItem.tsx` are kept for later but are not rendered. Watch out for two different `Project` types:
 
