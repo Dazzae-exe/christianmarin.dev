@@ -79,8 +79,6 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  --backdrop-image: url("./assets/backgrounds/bg-light.webp");
-  --backdrop-opacity: 0.09;
 }
 
 .dark {
@@ -115,8 +113,6 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --backdrop-image: url("./assets/backgrounds/bg-dark.webp");
-  --backdrop-opacity: 0.16;
 }
 
 @layer base {
@@ -147,27 +143,6 @@
 }
 
 @layer components {
-  .site-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    animation: backdrop-in 1600ms cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-  .site-backdrop::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: var(--backdrop-image);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 85% 0%;
-    opacity: var(--backdrop-opacity);
-    -webkit-mask-image: radial-gradient(115% 90% at 88% -5%, #000 0%, transparent 62%);
-    mask-image: radial-gradient(115% 90% at 88% -5%, #000 0%, transparent 62%);
-    transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
   .text-link {
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
@@ -321,33 +296,7 @@
   transform: none;
 }
 
-@keyframes backdrop-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@media (max-width: 767px) {
-  .site-backdrop::before {
-    opacity: calc(var(--backdrop-opacity) * 0.6);
-    -webkit-mask-image: radial-gradient(140% 45% at 75% 0%, #000 0%, transparent 70%);
-    mask-image: radial-gradient(140% 45% at 75% 0%, #000 0%, transparent 70%);
-  }
-}
-
-@media (prefers-contrast: more) {
-  .site-backdrop {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .site-backdrop {
-    animation: none;
-  }
   .animate-blur-in {
     animation: none;
   }
