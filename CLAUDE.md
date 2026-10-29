@@ -21,7 +21,7 @@ Despite the repo name, this is **not SSG**. It is a client-only React 19 SPA bui
 
 **Routing:** TanStack Router with file-based routes in `src/routes/`. The Vite plugin (`autoCodeSplitting: true`) generates `src/routeTree.gen.ts`. Never edit that file by hand; it regenerates on dev/build. `__root.tsx` wraps the `Outlet` in `AppShell` and calls `useTrackPageView()` on every navigation.
 
-**App shell** (`src/components/shell/`): `AppShell` is a two-column grid. On the left is the sticky `SiteAside` (desktop only). On the right is `<main>`. On mobile, `MobileDock` (a floating bottom pill) replaces the aside. There is no top navbar and no footer. Nav links and social links are defined **once** in `src/lib/data/navigation.ts`, and the aside, the dock, and the ⌘K menu all read from it. `CommandMenuProvider` owns the single instances of `SearchCommand` (⌘K) and `ContactDialog`, plus the ⌘K keyboard shortcut. Open any of them from anywhere with `useCommandMenu()` (`openSearch`, `openContact`). Those dialogs are controlled components with no trigger of their own.
+**App shell** (`src/components/shell/`): `AppShell` is a two-column grid. On the left is the sticky `SiteAside` (desktop only). On the right is `<main>`. On mobile, `MobileDock` (a floating bottom pill) replaces the aside. There is no top navbar and no footer. Nav links and social links are defined **once** in `src/lib/data/navigation.ts`, and the aside, the dock, and the ⌘K menu all read from it. `CommandMenuProvider` owns the single instance of `SearchCommand` (⌘K) plus the ⌘K keyboard shortcut. Open it from anywhere with `useCommandMenu().openSearch`. Contact is a `mailto:` link (`contactHref` in `navigation.ts`); there is no contact form.
 
 **Data flow** has three layers. Keep new content types in the same shape:
 
@@ -41,7 +41,7 @@ Despite the repo name, this is **not SSG**. It is a client-only React 19 SPA bui
 - `lib/types/project.ts` is the Supabase row.
 - `lib/types/projects.ts` is the static home-page card.
 
-**Placeholders:** `LanguageSelector` is a placeholder (the site is not localized) and `ContactDialog` only simulates submission (the toast is shown by the `Toaster` mounted in `AppShell`).
+**Placeholders:** `LanguageSelector` is a placeholder (the site is not localized).
 
 **UI:** Tailwind CSS 4 (via `@tailwindcss/vite`; theme tokens live in `src/index.css`, and there is no tailwind config file) plus shadcn/ui components (new-york style, Radix, lucide icons) in `src/components/ui/`. Add primitives there with the shadcn CLI (`components.json`). The `react-refresh/only-export-components` lint rule is turned off for that folder. `ui/sonner.tsx` reads the app's own `useTheme`, not next-themes.
 

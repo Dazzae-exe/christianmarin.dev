@@ -3,7 +3,7 @@ import Conference from "@/assets/hero-page/pinterest-blue-ui-conference-branding
 
 export function ProjectsFolder() {
   return (
-    <span aria-hidden className="folder">
+    <span aria-hidden className="peek folder">
       <span className="folder-back" />
       <img src={Expo} alt="" decoding="async" className="folder-file" />
       <img src={Conference} alt="" decoding="async" className="folder-file" />

@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router"
 import { Kbd } from "@/components/ui/kbd"
-import { navItems, socialLinks } from "@/lib/data/navigation"
+import { contactHref, navItems, socialLinks } from "@/lib/data/navigation"
+import { HomeCloud } from "./HomeCloud"
+import { MailIcon } from "./MailIcon"
 import { ProjectsFolder } from "./ProjectsFolder"
 import { ThemeCycleButton } from "./ThemeCycleButton"
 import { useCommandMenu } from "./command-menu-context"
@@ -9,7 +11,7 @@ const itemClass =
   "text-[0.9375rem] leading-7 text-muted-foreground transition-colors duration-500 hover:text-foreground"
 
 export function SiteAside() {
-  const { openSearch, openContact } = useCommandMenu()
+  const { openSearch } = useCommandMenu()
   const year = new Date().getFullYear()
 
   return (
@@ -25,6 +27,7 @@ export function SiteAside() {
                   className={`${itemClass} relative data-[status=active]:text-foreground`}
                 >
                   {item.name}
+                  {item.href === "/" && <HomeCloud />}
                   {item.href === "/projects" && <ProjectsFolder />}
                 </Link>
               </li>
@@ -51,9 +54,10 @@ export function SiteAside() {
             <ThemeCycleButton className={itemClass} />
           </li>
           <li>
-            <button type="button" onClick={openContact} className={itemClass}>
+            <a href={contactHref} className={`${itemClass} relative`}>
               Contact
-            </button>
+              <MailIcon />
+            </a>
           </li>
         </ul>
       </div>
