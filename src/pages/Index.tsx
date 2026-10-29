@@ -3,6 +3,7 @@ import { Reveal } from "@/components/Reveal";
 import AvatarDazz from "@/assets/avatar-dazz.webp";
 import Globe from "@/assets/hero-page/sphere-halftone-gif.jpeg";
 import Poster from "@/assets/hero-page/pinterest-technologie-welt-computer-enact.jpg";
+import Brochure from "@/assets/hero-page/brochure-design.jpeg";
 import Sculptor from "@/assets/hero-page/pinterest-blue-ui-conference-branding-arabic-design-x.jpg";
 
 const year = String(new Date().getFullYear());
@@ -20,7 +21,7 @@ const Index = () => {
   return (
     <div className="max-w-[42rem] @container">
       <header>
-        <h1 className="flex flex-col gap-[0.32em] text-[clamp(2.5rem,13cqi,5rem)] leading-[0.92] tracking-[-0.035em]">
+        <h1 className="flex flex-col gap-[0.32em] text-[clamp(2rem,13cqi,5rem)] leading-[0.92] tracking-[-0.035em]">
           <span className="flex items-center justify-between gap-[0.3em] animate-blur-in stagger-1">
             <span>
               Software
@@ -37,6 +38,7 @@ const Index = () => {
               <br />
               design
             </span>
+            <HeroImage src={Brochure} className="aspect-[2/3]" />
           </span>
 
           <span className="flex items-center justify-between gap-[0.3em] animate-blur-in stagger-3">
