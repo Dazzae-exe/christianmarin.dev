@@ -1,8 +1,7 @@
-import { FileText, FolderGit2, Github, House, Linkedin } from "lucide-react"
+import { FolderGit2, Github, House, Linkedin } from "lucide-react"
 
 export const navItems = [
   { name: "Home", href: "/", icon: House },
-  { name: "Blog", href: "/posts", icon: FileText },
   { name: "Projects", href: "/projects", icon: FolderGit2 },
 ] as const
 

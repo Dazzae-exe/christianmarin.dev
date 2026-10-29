@@ -2,8 +2,6 @@ import supabase from "@/lib/supabase/supabase";
 import type { AnalyticsResourceType } from "@/lib/types/analytics";
 
 const VISITOR_ID_KEY = "portfolio-visitor-id";
-const UUID_REGEX =
-  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 const getVisitorId = (): string => {
   let visitorId = localStorage.getItem(VISITOR_ID_KEY);
@@ -19,15 +17,6 @@ const getVisitorId = (): string => {
 const resolveResource = async (
   pathname: string,
 ): Promise<{ resource_type: AnalyticsResourceType; resource_id: string | null }> => {
-  const postMatch = pathname.match(/^\/posts\/([^/]+)\/?$/);
-  if (postMatch) {
-    const segment = decodeURIComponent(postMatch[1]);
-    if (UUID_REGEX.test(segment)) {
-      return { resource_type: "post", resource_id: segment };
-    }
-    return { resource_type: "page", resource_id: null };
-  }
-
   const projectMatch = pathname.match(/^\/projects\/([^/]+)\/?$/);
   if (projectMatch) {
     const slug = decodeURIComponent(projectMatch[1]);
