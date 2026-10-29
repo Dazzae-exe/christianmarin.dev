@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { PostgrestClient } from '@supabase/postgrest-js';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
@@ -11,9 +11,11 @@ if (!supabaseUrl) {
 
 if (!supabaseKey) {
   throw new Error(
-    'VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY is not defined. Please set it in your environment configuration.',
+    'VITE_SUPABASE_PUBLISHABLE_KEY is not defined. Please set it in your environment configuration.',
   );
 }
 
-const supabase = createClient(supabaseUrl as string, supabaseKey as string);
+const supabase = new PostgrestClient(new URL('rest/v1', supabaseUrl).href, {
+  headers: { apikey: supabaseKey },
+});
 export default supabase;

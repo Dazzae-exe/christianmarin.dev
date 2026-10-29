@@ -1,4 +1,4 @@
-import { ArrowUpRight, FileText, Laptop, Mail, Moon, Sun } from "lucide-react";
+import { ArrowUpRight, Laptop, Mail, Moon, Sun } from "lucide-react";
 import { useNavigate } from "@tanstack/react-router";
 import {
   CommandDialog,
@@ -19,10 +19,9 @@ type SearchCommandProps = {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onContact: () => void;
-  onCV: () => void;
 };
 
-export function SearchCommand({ open, onOpenChange, onContact, onCV }: SearchCommandProps) {
+export function SearchCommand({ open, onOpenChange, onContact }: SearchCommandProps) {
   const navigate = useNavigate();
   const { theme, setTheme } = useTheme();
   const upcomingTheme = nextTheme(theme);
@@ -65,10 +64,6 @@ export function SearchCommand({ open, onOpenChange, onContact, onCV }: SearchCom
           <CommandItem value="contact message email" onSelect={onContact}>
             <Mail />
             Contact me
-          </CommandItem>
-          <CommandItem value="cv resume" onSelect={onCV}>
-            <FileText />
-            View CV
           </CommandItem>
         </CommandGroup>
 
