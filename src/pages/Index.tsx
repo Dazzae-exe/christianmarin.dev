@@ -1,5 +1,6 @@
 import { Avatar } from "@/components/Avatar";
 import { Reveal } from "@/components/Reveal";
+import { ScrambleText } from "@/components/ScrambleText";
 import AvatarDazz from "@/assets/avatar-dazz.webp";
 import Globe from "@/assets/hero-page/sphere-halftone-gif.jpeg";
 import Poster from "@/assets/hero-page/pinterest-technologie-welt-computer-enact.jpg";
@@ -24,9 +25,9 @@ const Index = () => {
         <h1 className="flex flex-col gap-[0.32em] text-[clamp(2rem,13cqi,5rem)] leading-[0.92] tracking-[-0.035em]">
           <span className="flex items-center justify-between gap-[0.3em] animate-blur-in stagger-1">
             <span>
-              Software
+              <ScrambleText text="Software" delay={90} />
               <br />
-              engineer
+              <ScrambleText text="engineer" delay={90} />
             </span>
             <HeroImage src={Globe} className="aspect-[3/2]" />
           </span>
@@ -34,9 +35,9 @@ const Index = () => {
           <span className="flex items-center justify-between gap-[0.3em] animate-blur-in stagger-2">
             <HeroImage src={Poster} className="aspect-[4/5]" />
             <span className="text-right">
-              crafting
+              <ScrambleText text="crafting" delay={180} />
               <br />
-              design
+              <ScrambleText text="design" delay={180} />
             </span>
             <HeroImage src={Brochure} className="aspect-[2/3]" />
           </span>
@@ -45,7 +46,7 @@ const Index = () => {
             <span>
               &amp;
               <br />
-              code.
+              <ScrambleText text="code." delay={270} />
             </span>
             <span className="flex items-center gap-[0.3em]">
               <HeroImage src={Sculptor} className="aspect-[2/3]" />
