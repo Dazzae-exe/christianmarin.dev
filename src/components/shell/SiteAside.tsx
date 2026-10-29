@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router"
 import { Kbd } from "@/components/ui/kbd"
 import { navItems, socialLinks } from "@/lib/data/navigation"
+import { ProjectsFolder } from "./ProjectsFolder"
 import { ThemeCycleButton } from "./ThemeCycleButton"
 import { useCommandMenu } from "./command-menu-context"
 
@@ -21,9 +22,10 @@ export function SiteAside() {
                 <Link
                   to={item.href}
                   activeOptions={{ exact: item.href === "/" }}
-                  className={`${itemClass} data-[status=active]:text-foreground`}
+                  className={`${itemClass} relative data-[status=active]:text-foreground`}
                 >
                   {item.name}
+                  {item.href === "/projects" && <ProjectsFolder />}
                 </Link>
               </li>
             ))}
