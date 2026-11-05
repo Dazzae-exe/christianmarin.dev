@@ -16,7 +16,7 @@ export function SiteAside() {
   const year = new Date().getFullYear()
 
   return (
-    <aside className="sticky top-24 hidden h-[calc(100dvh-9rem)] flex-col justify-between self-start md:flex">
+    <aside data-intro-hidden className="sticky top-24 hidden h-[calc(100dvh-9rem)] flex-col justify-between self-start lg:flex">
       <div>
         <nav aria-label="Primary" className="animate-blur-in stagger-1">
           <ul>

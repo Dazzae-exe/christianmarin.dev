@@ -9,7 +9,8 @@ export function MobileDock() {
   return (
     <nav
       aria-label="Primary"
-      className="fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-40 flex justify-center px-4 animate-blur-in stagger-4 md:hidden"
+      className="fixed inset-x-0 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-40 flex justify-center px-4 animate-blur-in stagger-4 lg:hidden"
+      data-intro-hidden
     >
       <div className="flex items-center gap-0.5 rounded-full bg-background/80 p-1.5 shadow-[0_12px_32px_-12px_rgb(0_0_0/0.22),0_2px_6px_-2px_rgb(0_0_0/0.08)] backdrop-blur-xl backdrop-saturate-150 dark:bg-muted/80 dark:shadow-[0_12px_32px_-12px_rgb(0_0_0/0.7)]">
         {navItems.map((item) => (

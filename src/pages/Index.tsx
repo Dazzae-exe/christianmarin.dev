@@ -9,6 +9,9 @@ import Sculptor from "@/assets/hero-page/pinterest-blue-ui-conference-branding-a
 
 const year = String(new Date().getFullYear());
 
+// Must finish before the 1750ms intro in index.html ends.
+const SCRAMBLE_MS = 1300;
+
 const HeroImage = ({ src, className }: { src: string; className: string }) => (
   <img
     src={src}
@@ -21,14 +24,14 @@ const HeroImage = ({ src, className }: { src: string; className: string }) => (
 
 const Index = () => {
   return (
-    <div className="max-w-[42rem] @container">
-      <header>
-        <h1 className="flex flex-col gap-[0.32em] text-[clamp(2rem,13cqi,5rem)] leading-[0.92] tracking-[-0.035em]">
+    <div className="max-w-[42rem]">
+      <header data-hero className="@container [view-transition-name:hero]">
+        <h1 className="flex flex-col gap-[0.32em] text-[clamp(2rem,12.5cqi,var(--hero-max,5rem))] leading-[0.92] tracking-[-0.035em]">
           <span className="flex items-center justify-between gap-[0.3em] animate-blur-in stagger-1">
             <span>
-              <ScrambleText text="Software" delay={90} />
+              <ScrambleText text="Software" delay={90} duration={SCRAMBLE_MS} />
               <br />
-              <ScrambleText text="engineer" delay={90} />
+              <ScrambleText text="engineer" delay={90} duration={SCRAMBLE_MS} />
             </span>
             <HeroImage src={Globe} className="aspect-[3/2]" />
           </span>
@@ -36,9 +39,9 @@ const Index = () => {
           <span className="flex items-center justify-between gap-[0.3em] animate-blur-in stagger-2">
             <HeroImage src={Poster} className="aspect-[4/5]" />
             <span className="text-right">
-              <ScrambleText text="crafting" delay={180} />
+              <ScrambleText text="crafting" delay={180} duration={SCRAMBLE_MS} />
               <br />
-              <ScrambleText text="design" delay={180} />
+              <ScrambleText text="design" delay={180} duration={SCRAMBLE_MS} />
             </span>
             <HeroImage src={Brochure} className="aspect-[2/3]" />
           </span>
@@ -47,7 +50,7 @@ const Index = () => {
             <span>
               &amp;
               <br />
-              <ScrambleText text="code." delay={270} />
+              <ScrambleText text="code." delay={270} duration={SCRAMBLE_MS} />
             </span>
             <span className="flex items-center gap-[0.3em]">
               <HeroImage src={Sculptor} className="aspect-[2/3]" />
@@ -69,7 +72,7 @@ const Index = () => {
         </h1>
       </header>
 
-      <Reveal className="mt-20 max-w-[36rem] space-y-5 text-[1.0625rem] leading-[1.7] text-pretty text-muted-foreground stagger-4">
+      <Reveal data-intro-hidden className="mt-20 max-w-[36rem] space-y-5 text-[1.0625rem] leading-[1.7] text-pretty text-muted-foreground stagger-4">
         <div className="flex flex-col items-start gap-3 pb-3">
           <Avatar src={AvatarDazz} alt="" className="size-16" />
           <p className="text-[0.9375rem] text-foreground">Christian Marín</p>

@@ -480,6 +480,35 @@
   }
 }
 
+[data-intro] [data-intro-hidden] {
+  display: none;
+}
+
+html[data-intro] {
+  --background: oklch(0 0 0);
+  --foreground: oklch(0.972 0.003 85);
+}
+
+[data-intro] [data-hero] {
+  --hero-max: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  width: min(90vw, 105dvh);
+  height: fit-content;
+  margin: auto;
+}
+
+::view-transition-group(hero) {
+  animation-duration: 900ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 600ms;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .peek,
   .folder-file,

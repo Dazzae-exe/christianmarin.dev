@@ -16,6 +16,14 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Christian Marín - Personal Blog and Portfolio">
     <meta name="twitter:description" content="Welcome to my portfolio! I'm Christian Marín, a passionate software developer with expertise in web development, mobile app development, and cloud computing. Explore my projects, skills, and experience to see how I can contribute to your next project.">
+    <script>
+      if (location.pathname === "/" && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        const html = document.documentElement
+        const end = () => delete html.dataset.intro
+        html.dataset.intro = ""
+        setTimeout(() => (document.startViewTransition ? document.startViewTransition(end) : end()), 1750)
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
