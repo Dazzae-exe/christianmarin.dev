@@ -4,6 +4,7 @@ import { contactHref, navItems, socialLinks } from "@/lib/data/navigation"
 import { HomeCloud } from "./HomeCloud"
 import { MailIcon } from "./MailIcon"
 import { ProjectsFolder } from "./ProjectsFolder"
+import { SearchGlobe } from "./SearchGlobe"
 import { ThemeCycleButton } from "./ThemeCycleButton"
 import { useCommandMenu } from "./command-menu-context"
 
@@ -42,12 +43,13 @@ export function SiteAside() {
             <button
               type="button"
               onClick={openSearch}
-              className={`${itemClass} inline-flex items-center gap-2`}
+              className={`${itemClass} relative inline-flex items-center gap-2`}
             >
               Search
               <Kbd className="h-5 bg-foreground/[0.06] px-1.5 font-mono text-[0.6875rem] text-muted-foreground">
                 ⌘K
               </Kbd>
+              <SearchGlobe />
             </button>
           </li>
           <li>
