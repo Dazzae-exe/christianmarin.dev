@@ -456,6 +456,60 @@
   }
 }
 
+.github-graph {
+  top: auto;
+  bottom: calc(100% + 0.625rem);
+  left: -0.125rem;
+  width: 5.5rem;
+  translate: none;
+  rotate: -4deg;
+  transform-origin: bottom left;
+  transition-property: opacity, scale, filter, rotate;
+
+  rect {
+    fill: color-mix(in oklch, var(--foreground) 7%, transparent);
+  }
+  [data-level="1"] { fill: oklch(0.87 0.08 152); }
+  [data-level="2"] { fill: oklch(0.75 0.12 152); }
+  [data-level="3"] { fill: oklch(0.62 0.13 152); }
+  [data-level="4"] { fill: oklch(0.5 0.11 152); }
+}
+
+.dark .github-graph {
+  [data-level="1"] { fill: oklch(0.36 0.07 152); }
+  [data-level="2"] { fill: oklch(0.48 0.1 152); }
+  [data-level="3"] { fill: oklch(0.62 0.13 152); }
+  [data-level="4"] { fill: oklch(0.76 0.14 152); }
+}
+
+.linkedin-icon {
+  top: auto;
+  bottom: calc(100% + 0.625rem);
+  left: -0.125rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  translate: none;
+  rotate: 6deg;
+  transform-origin: bottom left;
+  transition-property: opacity, scale, filter, rotate;
+}
+
+.linkedin-icon-mark {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translateY(3px) scale(0.92);
+  transition: transform 550ms var(--folder-ease);
+}
+
+:is(a, button):is(:hover, :focus-visible) > :is(.github-graph, .linkedin-icon) {
+  rotate: 0deg;
+}
+
+:is(a, button):is(:hover, :focus-visible) > .linkedin-icon .linkedin-icon-mark {
+  transform: none;
+  transition-delay: 80ms;
+}
+
 :is(a, button):is(:hover, :focus-visible) > .peek {
   scale: 1;
   opacity: 1;
@@ -513,6 +567,7 @@ html[data-intro] {
   .peek,
   .folder-file,
   .mail-icon-envelope,
+  .linkedin-icon-mark,
   .folder-front {
     filter: none;
     transition: opacity 150ms linear;

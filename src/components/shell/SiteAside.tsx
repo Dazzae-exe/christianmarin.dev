@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router"
 import { Kbd } from "@/components/ui/kbd"
 import { contactHref, navItems, socialLinks } from "@/lib/data/navigation"
+import { GithubGraph } from "./GithubGraph"
 import { HomeCloud } from "./HomeCloud"
+import { LinkedinIcon } from "./LinkedinIcon"
 import { MailIcon } from "./MailIcon"
 import { ProjectsFolder } from "./ProjectsFolder"
 import { SearchGlobe } from "./SearchGlobe"
@@ -72,9 +74,11 @@ export function SiteAside() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-colors duration-500 hover:text-foreground"
+                className="relative transition-colors duration-500 hover:text-foreground"
               >
                 {link.name}
+                {link.name === "GitHub" && <GithubGraph />}
+                {link.name === "LinkedIn" && <LinkedinIcon />}
               </a>
             </li>
           ))}
