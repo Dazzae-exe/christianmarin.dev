@@ -538,11 +538,6 @@
   display: none;
 }
 
-html[data-intro] {
-  --background: oklch(0 0 0);
-  --foreground: oklch(0.972 0.003 85);
-}
-
 [data-intro] [data-hero] {
   --hero-max: none;
   position: fixed;
