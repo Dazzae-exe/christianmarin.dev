@@ -1,4 +1,5 @@
 import { useProjects } from "@/hooks/useQueryHooks";
+import { projectPreviews } from "@/lib/data/projectPreviews";
 import { ContentListPage } from "./ContentListPage";
 
 export const ProjectsList = () => {
@@ -18,6 +19,7 @@ export const ProjectsList = () => {
                 href: `/projects/${project.slug}`,
                 date: project.created_at,
                 tags: project.tags,
+                preview: projectPreviews[project.slug],
             }))}
         />
     );

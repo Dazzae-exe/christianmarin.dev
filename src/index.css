@@ -447,6 +447,178 @@
   transition: transform 550ms var(--folder-ease);
 }
 
+.video-peek {
+  display: none;
+  inset: 0 auto auto 0;
+  z-index: 10;
+  width: 15rem;
+  max-width: none;
+  max-height: none;
+  aspect-ratio: 16 / 9;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 6px;
+  color: oklch(1 0 0);
+  background: var(--muted);
+  box-shadow: 0 10px 28px -12px oklch(0 0 0 / 35%);
+  translate: calc(var(--peek-x, 32rem) - 50%) calc(var(--peek-y, 3rem) - 50%);
+  rotate: -3deg;
+  transform-origin: center;
+  transition-property: opacity, scale, filter, rotate, translate;
+  transition-duration: 550ms, 550ms, 550ms, 550ms, 350ms;
+
+  > video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  [data-peek-snap] > & {
+    transition-duration: 550ms, 550ms, 550ms, 550ms, 0ms;
+  }
+
+  &[data-morph] {
+    view-transition-name: video-peek;
+  }
+
+  &[data-morph] .video-close {
+    view-transition-name: video-close;
+  }
+
+  &::backdrop {
+    background: oklch(0.12 0.004 85 / 72%);
+    backdrop-filter: blur(10px);
+  }
+
+  @media (min-width: 64rem) and (hover: hover) {
+    display: block;
+  }
+}
+
+.video-card:is(:hover, :focus-within) > .video-peek {
+  scale: 1;
+  opacity: 1;
+  filter: none;
+  rotate: 0deg;
+}
+
+.video-peek[open] {
+  position: fixed;
+  inset: 0;
+  width: min(92vw, calc(88dvh * 16 / 9));
+  height: min(88dvh, calc(92vw * 9 / 16));
+  margin: auto;
+  border-radius: 16px;
+  box-shadow: 0 30px 80px -30px oklch(0 0 0 / 60%);
+  translate: none;
+  rotate: none;
+  scale: none;
+  opacity: 1;
+  filter: none;
+  pointer-events: auto;
+  transition: none;
+}
+
+html:has(.video-peek[open]) {
+  overflow: hidden;
+}
+
+.video-close {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 3px;
+  border-radius: 50%;
+  background: oklch(0.18 0 0 / 55%);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  > * {
+    grid-area: 1 / 1;
+  }
+
+  .video-peek[open] & {
+    top: 1rem;
+    left: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .video-peek[open] &:hover {
+    background: oklch(0.18 0 0 / 75%);
+  }
+
+  &:focus-visible {
+    outline: 2px solid oklch(1 0 0);
+    outline-offset: 3px;
+  }
+}
+
+.video-close-icon {
+  width: 1rem;
+  height: 1rem;
+  opacity: 0;
+
+  .video-peek[open] & {
+    opacity: 1;
+  }
+}
+
+.video-ring {
+  width: 100%;
+  height: 100%;
+  rotate: -90deg;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+
+  circle:first-child {
+    stroke: oklch(1 0 0 / 28%);
+  }
+
+  circle:last-child {
+    stroke: oklch(1 0 0);
+    stroke-dasharray: 1;
+    stroke-dashoffset: calc(1 - var(--progress, 0));
+  }
+
+  .video-peek[open] & {
+    stroke-width: 1.75;
+  }
+}
+
+.video-card:hover > .video-peek:not([open]) .video-ring circle:last-child {
+  animation: video-ring-fill 3s linear forwards;
+}
+
+@keyframes video-ring-fill {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+::view-transition-group(video-peek),
+::view-transition-group(video-close) {
+  animation-duration: 650ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-old(video-peek),
+::view-transition-new(video-peek) {
+  height: 100%;
+  object-fit: cover;
+}
+
 :is(a, button):is(:hover, :focus-visible) > .mail-icon {
   rotate: 0deg;
 

@@ -1,6 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { formatDate } from "@/lib/format";
+import type { VideoPreviewSource } from "@/lib/types/videoPreview";
+import { VideoPreview } from "./VideoPreview";
 
 export interface ContentCardProps {
   title: string;
@@ -8,10 +10,11 @@ export interface ContentCardProps {
   description?: string | null;
   date?: string | null;
   tags?: string[] | null;
+  preview?: VideoPreviewSource;
 }
 
-export function ContentCard({ title, href, description, date, tags }: ContentCardProps) {
-  return (
+export function ContentCard({ title, href, description, date, tags, preview }: ContentCardProps) {
+  const card = (
     <Link
       to={href}
       className="group grid gap-x-10 gap-y-2 py-7 sm:grid-cols-[minmax(0,1fr)_auto]"
@@ -42,5 +45,13 @@ export function ContentCard({ title, href, description, date, tags }: ContentCar
         </time>
       ) : null}
     </Link>
+  );
+
+  return preview ? (
+    <VideoPreview {...preview} title={title}>
+      {card}
+    </VideoPreview>
+  ) : (
+    card
   );
 }
