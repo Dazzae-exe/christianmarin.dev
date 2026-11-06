@@ -1,75 +1,46 @@
-# Christian Marín — Portfolio (Project Showcase)
+# Christian Marín — Portfolio
 
 [![.github/workflows/ci.yml](https://github.com/Dazzae-exe/christianmarin.dev/actions/workflows/ci.yml/badge.svg)](https://github.com/Dazzae-exe/christianmarin.dev/actions/workflows/ci.yml)
 
-A modern personal portfolio built with **React + TypeScript** to showcase professional work, and projects in one place.
-
-This app combines:
-
-- A clean personal landing page
-- A **project showcase** with dedicated listing routes
-- Fast client-side navigation with TanStack Router
-- Cached data fetching with TanStack Query
-- A polished UI using Tailwind CSS + Radix/shadcn-style primitives
+My personal portfolio: a minimalist, editorial site built with **React 19 + TypeScript**. It is a client-only SPA (not SSG, despite the repo name) deployed on Vercel, with project content served from Supabase.
 
 ---
 
-## What I Built
+## Features
 
-### 1) Personal Home Experience
+### Home
 
-- Intro/profile section with avatar and summary
-- Work experience timeline with outbound links
-- Featured project highlights
-- Quick entry point to the Projects section
+- Hero intro on first load: the headline starts full-screen, scrambles in as ASCII and glides into place with a View Transition
+- Short bio with avatar
 
-### 2) Project Showcase
+### Projects
 
-- `/projects` route lists projects from Supabase
-- Card-based content previews
-- Dedicated project detail route scaffolded at `/projects/$projectId`
+- `/projects` lists projects from Supabase
+- Video preview that follows the pointer when hovering a project card
+- `/projects/$projectId` renders a project article (the param is the project **slug**)
+- ASCII 404 page
 
-### 3) Navigation + UX
+### Navigation and UX
 
-- Sticky top navigation for Home / Projects
-- Command menu search (`⌘K` / `Ctrl+K`) for quick page jump
-- Footer with social links, contact dialog, language selector, and theme selector
-- Responsive layout with a consistent visual style
+- Sticky aside on desktop, a floating bottom dock on mobile (no top navbar, no footer)
+- Command menu (`⌘K` / `Ctrl+K`) to jump between pages
+- Hover peeks in the aside (macOS folder for Projects, ASCII cloud for Home, GitHub graph, LinkedIn, Search, Theme)
+- Light / dark / system theme that follows OS changes
+- Contact through a `mailto:` link
+- Staggered blur-in page entrances and scroll reveals, disabled under `prefers-reduced-motion`
+- Anonymous page-view analytics through a Supabase RPC
 
 ---
 
 ## Tech Stack
 
-### Core
-
-- **React 19**
-- **TypeScript 5**
-- **Vite 7**
-
-### Routing & Data
-
-- **TanStack Router** (file-based routing)
-- **TanStack Query** (server-state caching and query lifecycle)
-- **Supabase JS** (content backend for projects)
-
-### UI & Styling
-
-- **Tailwind CSS 4**
-- **Radix UI primitives**
-- **shadcn/ui-style component architecture**
-- **Lucide React** icons
-- **next-themes** for dark/light theme behavior
-
-### Forms & Validation
-
-- **react-hook-form**
-- **zod**
-- **@hookform/resolvers**
-
-### Tooling
-
-- **ESLint 9**
-- **TypeScript ESLint**
+- **React 19**, **TypeScript 5**, **Vite 7**
+- **TanStack Router** (file-based routing, automatic code splitting)
+- **TanStack Query** (server-state caching)
+- **Supabase** via `@supabase/postgrest-js`
+- **Tailwind CSS 4** + **shadcn/ui** (Radix primitives, Lucide icons)
+- **DM Sans Variable** as the only typeface
+- **ESLint 9** + TypeScript ESLint
 
 ---
 
@@ -77,69 +48,59 @@ This app combines:
 
 ```bash
 src/
-	components/         # Reusable UI and feature components
-	hooks/              # Query hooks (projects)
-	lib/
-		supabase/         # Supabase client configuration only
-		types/            # Shared domain types
-	pages/              # Page-level components
-	routes/             # TanStack Router route files
-	services/           # Data access layer (queries/mutations)
-		analytics/        # Page view tracking
-		projects/         # Project queries
+  assets/             # Images, videos and design references
+  components/         # Feature components
+    shell/            # AppShell, SiteAside, MobileDock, command menu, hover peeks
+    ui/               # shadcn/ui primitives
+  hooks/              # TanStack Query hooks and page-view tracking
+  lib/
+    data/             # Navigation, social links and static content
+    supabase/         # Supabase client
+    types/            # Shared domain types
+  pages/              # Page-level components
+  routes/             # TanStack Router route files
+  services/           # Data access layer
+    analytics/        # Page-view tracking (track_view RPC)
+    projects/         # Project queries
 ```
+
+`src/routeTree.gen.ts` is generated on dev/build; don't edit it by hand.
 
 ---
 
 ## Local Development
 
-### 1) Install dependencies
+Requires **Node 24** and **pnpm**.
 
 ```bash
 pnpm install
 ```
 
-### 2) Configure environment variables
-
-Create a `.env` file in the project root:
+Create `.env.local` (or `.env`) in the project root. The app won't boot without these:
 
 ```bash
 VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_anon_or_publishable_key
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
 ```
-
-### 3) Run the app
 
 ```bash
 pnpm dev
 ```
 
-The app runs in development mode with Vite.
+### Scripts
+
+- `pnpm dev`: start the Vite dev server
+- `pnpm build`: type-check (`tsc -b`) and build for production
+- `pnpm preview`: serve the production build
+- `pnpm lint`: run ESLint
 
 ---
 
-## Available Scripts
+## CI and Deployment
 
-- `pnpm dev` — start local development server
-- `pnpm build` — type-check and build production assets
-- `pnpm preview` — preview production build locally
-- `pnpm lint` — run lint checks
+GitHub Actions (`.github/workflows/ci.yml`) runs install → lint → build on pushes to `main` and when a pull request is opened or reopened.
 
----
-
-## Deployment
-
-This project includes `vercel.json` and is ready to deploy on **Vercel**.
-
-For production, ensure the same `VITE_SUPABASE_*` environment variables are set in your hosting platform.
-
----
-
-## Notes
-
-- Project data is fetched from Supabase tables.
-- Query caching is configured with a 5-minute stale window in custom hooks.
-- The codebase is organized to scale content sections cleanly (projects, future additions).
+The site deploys on **Vercel**. `vercel.json` rewrites every path to `index.html` and caches `/assets/*` immutably. Set the same `VITE_SUPABASE_*` variables in the Vercel project.
 
 ---
 
