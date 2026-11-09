@@ -1,5 +1,4 @@
 import { Avatar } from "@/components/Avatar";
-import { Reveal } from "@/components/Reveal";
 import { ScrambleText } from "@/components/ScrambleText";
 import AvatarDazz from "@/assets/avatar-dazz.webp";
 import Globe from "@/assets/hero-page/sphere-halftone-gif.webp";
@@ -72,7 +71,7 @@ const Index = () => {
         </h1>
       </header>
 
-      <Reveal data-intro-hidden className="mt-20 max-w-[36rem] space-y-5 text-[1.0625rem] leading-[1.7] text-pretty text-muted-foreground stagger-4">
+      <div data-intro-hidden className="animate-blur-in mt-20 max-w-[36rem] space-y-5 text-[1.0625rem] leading-[1.7] text-pretty text-muted-foreground stagger-4">
         <div className="flex flex-col items-start gap-3 pb-3">
           <Avatar src={AvatarDazz} alt="" className="size-16" />
           <p className="text-[0.9375rem] text-foreground">Christian Marín</p>
@@ -86,7 +85,7 @@ const Index = () => {
         <p>
           I thrive at the intersection of aesthetics and functionality, delivering visually captivating interfaces backed by scalable, performant code.
         </p>
-      </Reveal>
+      </div>
     </div>
   );
 };
